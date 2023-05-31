@@ -24,14 +24,19 @@
 
                     // Je lance ma boucle pour afficher une carte boostrap par article 
                     foreach($articles as $article) {
-                        echo    '<div class="card col-md-4 mt-2">
-                                    <img src="./images/' . $article['picture'] . '" class="card-img-top mt-2" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">' . $article['name'] . '</h5>
-                                        <p class="card-text">' . $article['description'] . '</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        echo    "<div class=\"card col-md-4 mt-2\">
+                                    <img src=\"./images/" . $article['picture'] . "\" class=\"card-img-top mt-2\" alt=\"...\">
+                                    <div class=\"card-body\">
+                                        <h5 class=\"card-title\">" . $article['name'] . "</h5>
+                                        <p class=\"card-text\">" . $article['description'] . "</p>
+                                        <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>
+
+                                        <form method=\"GET\" action=\"./produit.php\">
+                                            <input type=\"hidden\" name=\"productId\" value=\"" . $article['id'] . "\">
+                                            <input type=\"submit\" class=\"btn btn-primary\" value=\"Détails produit\">
+                                        </form>
                                     </div>
-                                </div>';
+                                </div>";
                     }
                 ?>
             </div>
@@ -42,4 +47,3 @@
         include 'footer.php'
     ?>
 </body>
-<img src="" alt="">
