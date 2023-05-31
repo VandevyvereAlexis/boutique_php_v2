@@ -1,5 +1,23 @@
 body {
-    height: 100%;
     padding: 0;
     margin: 0;
+}
+
+/* image de fond */
+#header-home {
+    background-image: url(./images/image_fond.jpg);
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* images cards */
+#image-card {
+  width: 66%;
+}
+
+#card-home {
+  width: 20%;
 }

@@ -29,6 +29,41 @@
                 'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
                 'picture'             => 'sujet_3.png'
             ],
+            // Article 3
+            [
+                'name'                => 'Rolex',
+                'id'                  => '4',
+                'price'               => 7500.99,
+                'description'         => 'Moderne et élégant',
+                'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
+                'picture'             => 'sujet_3.png'
+            ],
+            // Article 3
+            [
+                'name'                => 'Rolex',
+                'id'                  => '5',
+                'price'               => 7500.99,
+                'description'         => 'Moderne et élégant',
+                'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
+                'picture'             => 'sujet_3.png'
+            ],
+            // Article 3
+            [
+                'name'                => 'Rolex',
+                'id'                  => '6',
+                'price'               => 7500.99,
+                'description'         => 'Moderne et élégant',
+                'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
+                'picture'             => 'sujet_3.png'
+            ],// Article 3
+            [
+                'name'                => 'Rolex',
+                'id'                  => '7',
+                'price'               => 7500.99,
+                'description'         => 'Moderne et élégant',
+                'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
+                'picture'             => 'sujet_3.png'
+            ],
         ];
     }
 
@@ -44,5 +79,31 @@
             }
         }
         // le renvoyer avec un return
+    }
+
+    // initaliser le panier 
+    function createCart() {
+       if (isset($_SESSION['panier']) == false) {  // si mon panier n'existe pas encore 
+        $_SESSION['panier'] = [];               // je l'initialise
+        }
+    }
+
+    function addToCart($article) {
+        // on attribut une quandtité de 1 ( par defaut ) à l'articel 
+        $article['quantite'] = 1;
+        // je verifie si l'article n'est pas déja présent
+        // $i = index de la boucle
+        // $i < count($_SESSION['panier]) = condition de maintien de la boucle ( évaluée AVANT chaque tour )
+        // (si condition vraie => on lance la boucle)
+        // $i++ = évolution d el'index $i à la FIN de chaque boucle
+        for ($i = 0; 0 < count($_SESSION['panier']); $i++) {
+            // si present = quantite +1
+            if ($_SESSION['panier'][$i]['id'] == $article['id']) {
+                $_SESSION['panier'][$i]['quantite']++;
+                return; // permet de sortir de la fonction
+            }
+        }
+        // si pas present => ajout classqiue via array_push
+        array_push($_SESSION['panier'], $article);
     }
 ?>

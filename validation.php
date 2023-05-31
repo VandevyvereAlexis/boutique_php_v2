@@ -4,6 +4,8 @@
     session_start();
     // J'inclus le head avec les balises de base + la balise head ( pour ne pas répéter le code qu'il contient )
     include 'head.php';
+     //initialiser panier 
+    createCart();
 ?>
 
 <body>
