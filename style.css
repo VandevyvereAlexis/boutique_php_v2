@@ -4,9 +4,9 @@ body {
 }
 
 /* image de fond */
-#header-home {
-    background-image: url(./images/image_fond.jpg);
-    width: 100%;
+#image_fond {
+    background-image: linear-gradient(to right, #000000c0, #ffffff1f), url(./images/image_fond.jpg);
+    width: 100vw;
     height: 100vh;
     background-size: cover;
     background-position: center;
@@ -15,9 +15,13 @@ body {
 
 /* images cards */
 #image-card {
-  width: 66%;
+  width: 200px;
 }
 
 #card-home {
-  width: 20%;
+  border: 1px solid white;
+}
+
+#container-panier {
+  border: 1px solid black;
 }

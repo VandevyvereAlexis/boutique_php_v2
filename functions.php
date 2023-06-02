@@ -29,25 +29,25 @@
                 'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
                 'picture'             => 'sujet_3.png'
             ],
-            // Article 3
+            // Article 4 
             [
-                'name'                => 'Rolex',
+                'name'                => 'Apple',
                 'id'                  => '4',
-                'price'               => 7500.99,
+                'price'               => 550.99,
                 'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
-                'picture'             => 'sujet_3.png'
+                'detailleDescription' => 'Découvrez l\'Apple Watch : une montre intelligente alliant technologie avancée et design élégant. Restez connecté, suivez votre santé et bénéficiez de fonctionnalités pratiques, le tout à votre poignet. Une expérience unique alliant style et innovation.',
+                'picture'             => 'sujet.png'
             ],
-            // Article 3
+            // Article 5
             [
-                'name'                => 'Rolex',
+                'name'                => 'Omega',
                 'id'                  => '5',
-                'price'               => 7500.99,
+                'price'               => 1500.90,
                 'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
-                'picture'             => 'sujet_3.png'
+                'detailleDescription' => 'Plongez dans l\'univers de l\'Omega Watch : une montre d\'exception alliant artisanat d\'élite et sophistication intemporelle. Découvrez un mariage parfait entre design raffiné et précision horlogère. Une montre qui incarne l\'excellence et l\'élégance à chaque instant.',
+                'picture'             => 'sujet_2.png'
             ],
-            // Article 3
+            // Article 6
             [
                 'name'                => 'Rolex',
                 'id'                  => '6',
@@ -55,14 +55,24 @@
                 'description'         => 'Moderne et élégant',
                 'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
                 'picture'             => 'sujet_3.png'
-            ],// Article 3
+            ],
+            // Article 7 
             [
-                'name'                => 'Rolex',
+                'name'                => 'Apple',
                 'id'                  => '7',
-                'price'               => 7500.99,
+                'price'               => 550.99,
                 'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
-                'picture'             => 'sujet_3.png'
+                'detailleDescription' => 'Découvrez l\'Apple Watch : une montre intelligente alliant technologie avancée et design élégant. Restez connecté, suivez votre santé et bénéficiez de fonctionnalités pratiques, le tout à votre poignet. Une expérience unique alliant style et innovation.',
+                'picture'             => 'sujet.png'
+            ],
+            // Article 8
+            [
+                'name'                => 'Omega',
+                'id'                  => '8',
+                'price'               => 1500.90,
+                'description'         => 'Moderne et élégant',
+                'detailleDescription' => 'Plongez dans l\'univers de l\'Omega Watch : une montre d\'exception alliant artisanat d\'élite et sophistication intemporelle. Découvrez un mariage parfait entre design raffiné et précision horlogère. Une montre qui incarne l\'excellence et l\'élégance à chaque instant.',
+                'picture'             => 'sujet_2.png'
             ],
         ];
     }
@@ -96,7 +106,7 @@
         // $i < count($_SESSION['panier]) = condition de maintien de la boucle ( évaluée AVANT chaque tour )
         // (si condition vraie => on lance la boucle)
         // $i++ = évolution d el'index $i à la FIN de chaque boucle
-        for ($i = 0; 0 < count($_SESSION['panier']); $i++) {
+        for ($i = 0; $i < count($_SESSION['panier']); $i++) {
             // si present = quantite +1
             if ($_SESSION['panier'][$i]['id'] == $article['id']) {
                 $_SESSION['panier'][$i]['quantite']++;
@@ -106,4 +116,45 @@
         // si pas present => ajout classqiue via array_push
         array_push($_SESSION['panier'], $article);
     }
+
+    function totalPanier() {
+        $totalPanier = 0; 
+        foreach ($_SESSION['panier'] as $article) {
+            // Quantiter x prix 
+            $totalPanier += $article['quantite'] * $article['price'];
+        }
+        return $totalPanier;
+    }
+
+    // modifier la quantite de l'article dans le panier
+    function updateQuantity() {
+        // je boucle sur le panier => je cherche l'article à modifier 
+        for ($i = 0; $i < count($_SESSION['panier']); $i++) {
+            // des que je trouyve mon article 
+            if ($_SESSION['panier'][$i]['id'] == $_POST['modifiedArticleId']) {
+                // je remplace son ancienne quantite par la nouvelle 
+                $_SESSION['panier'][$i]['quantite'] = $_POST['newQuantity'];
+                // j'affiche un message de succès dans une petite fenêtre via JavaScript 
+                echo "<script> alert(\"Quantité modifiée !\");</script>";
+                // Je sort de la fonction pour eviter de boucler sur les articles suivants
+                return;
+            }
+        }
+    }
+
+    function deleteArticle($productId) {
+        if (isset($_SESSION['panier'])) {
+            foreach ($_SESSION['panier'] as $key => $article) {
+                if ($article['id'] === $productId) {
+                    array_splice($_SESSION['panier'], $key, 1);
+                    break;
+                }
+            }
+        }
+    }
+
+    function viderPanier() {
+        $_SESSION['panier'] = array();
+    }
+
 ?>
