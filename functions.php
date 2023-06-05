@@ -74,6 +74,60 @@
                 'detailleDescription' => 'Plongez dans l\'univers de l\'Omega Watch : une montre d\'exception alliant artisanat d\'élite et sophistication intemporelle. Découvrez un mariage parfait entre design raffiné et précision horlogère. Une montre qui incarne l\'excellence et l\'élégance à chaque instant.',
                 'picture'             => 'sujet_2.png'
             ],
+            // Article 6
+            [
+                'name'                => 'Rolex',
+                'id'                  => '6',
+                'price'               => 7500.99,
+                'description'         => 'Moderne et élégant',
+                'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
+                'picture'             => 'sujet_3.png'
+            ],
+            // Article 7 
+            [
+                'name'                => 'Apple',
+                'id'                  => '7',
+                'price'               => 550.99,
+                'description'         => 'Moderne et élégant',
+                'detailleDescription' => 'Découvrez l\'Apple Watch : une montre intelligente alliant technologie avancée et design élégant. Restez connecté, suivez votre santé et bénéficiez de fonctionnalités pratiques, le tout à votre poignet. Une expérience unique alliant style et innovation.',
+                'picture'             => 'sujet.png'
+            ],
+            // Article 8
+            [
+                'name'                => 'Omega',
+                'id'                  => '8',
+                'price'               => 1500.90,
+                'description'         => 'Moderne et élégant',
+                'detailleDescription' => 'Plongez dans l\'univers de l\'Omega Watch : une montre d\'exception alliant artisanat d\'élite et sophistication intemporelle. Découvrez un mariage parfait entre design raffiné et précision horlogère. Une montre qui incarne l\'excellence et l\'élégance à chaque instant.',
+                'picture'             => 'sujet_2.png'
+            ],
+            // Article 6
+            [
+                'name'                => 'Rolex',
+                'id'                  => '6',
+                'price'               => 7500.99,
+                'description'         => 'Moderne et élégant',
+                'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
+                'picture'             => 'sujet_3.png'
+            ],
+            // Article 7 
+            [
+                'name'                => 'Apple',
+                'id'                  => '7',
+                'price'               => 550.99,
+                'description'         => 'Moderne et élégant',
+                'detailleDescription' => 'Découvrez l\'Apple Watch : une montre intelligente alliant technologie avancée et design élégant. Restez connecté, suivez votre santé et bénéficiez de fonctionnalités pratiques, le tout à votre poignet. Une expérience unique alliant style et innovation.',
+                'picture'             => 'sujet.png'
+            ],
+            // Article 8
+            [
+                'name'                => 'Omega',
+                'id'                  => '8',
+                'price'               => 1500.90,
+                'description'         => 'Moderne et élégant',
+                'detailleDescription' => 'Plongez dans l\'univers de l\'Omega Watch : une montre d\'exception alliant artisanat d\'élite et sophistication intemporelle. Découvrez un mariage parfait entre design raffiné et précision horlogère. Une montre qui incarne l\'excellence et l\'élégance à chaque instant.',
+                'picture'             => 'sujet_2.png'
+            ],
         ];
     }
 
@@ -157,4 +211,14 @@
         $_SESSION['panier'] = array();
     }
 
+    //function calculerFraisPort()
+    function frais() {
+        $totalFrais = 0; 
+        $fraisParArticle = 3;
+        foreach ($_SESSION['panier'] as $article) {
+            // Quantiter x prix 
+            $totalFrais += $article['quantite'] * $fraisParArticle;
+        }
+        return $totalFrais;
+    }
 ?>
