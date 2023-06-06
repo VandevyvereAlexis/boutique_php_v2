@@ -35,7 +35,9 @@ if (isset($_POST['vider_panier'])) {
         <div class="container-fluid" id="image_fond">
             <div class="row">
                 <div class="col text-center mt-5">
+                    <!-- Titre -->
                     <h1 class="text-light text-center mt-5 pt-5"><span class="fw-bolder">Bienvenue dans l'univers du temps raffiné</span><br> Explorez notre collection de montres exquises !</h1>
+                    <!-- button -->
                     <div class="mt-5">
                         <a href="#articles" class="p-3 text-light">Découvrez notre collection</a>
                     </div>
@@ -64,9 +66,9 @@ if (isset($_POST['vider_panier'])) {
                                 <div class="card bg-dark text-light border border-secondary" id="card-home">
 
                                 <p class="card-text ms-3 mt-2">' . $article['price'] . '€</p>
-                                <img src="./images/' . $article['picture'] . '" class="card-img-top mx-auto p-4" alt="..." id="image-card">
+                                <img src="./images/' . $article['picture'] . '" class="card-img-top mx-auto p-4 pt-4 mb-4" alt="..." id="image-card">
 
-                                    <div class="card-body">
+                                    <div class="card-body border border-secondary">
 
                                         <h5 class="card-title">' . $article['name'] . '</h5>
                                         <p class="card-text">' . $article['description'] . '</p>

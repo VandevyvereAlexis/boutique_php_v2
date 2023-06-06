@@ -23,7 +23,9 @@ createCart();               // initialiser le panier.
 
     <!-- main 
     ======================= -->
-    <main style="height: 100vh;">
+    <main class="pt-5" style="height: 100vh;">
+        <!-- Titre -->
+        <h1 class="text-light pt-3 text-center">Panier</h1>
 
         <!-- PHP -->
         <?php 
@@ -37,12 +39,12 @@ createCart();               // initialiser le panier.
                 //var_dump($article);                           // Je teste ma variable
                 addToCart($article);                            // 3. Ajouter l'article au panier et tester le résultat
             }
-            if (isset($_POST['deletedArticleId'])) {
+            if (isset($_POST['deletedArticleId'])) {            // fonction supression article
                 //var_dump($_POST);
                 $articlePanierId = $_POST['deletedArticleId'];
                 deleteArticle($articlePanierId);
             }
-            if (isset($_POST['viderPanier'])) {
+            if (isset($_POST['viderPanier'])) {                 // fonction supression panier
                 viderPanier();
             }
 
@@ -95,6 +97,7 @@ createCart();               // initialiser le panier.
         <section id="total-panier">
             <div class="container">
                 <div class="row">
+                    <!-- total panier -->
                     <h4 class="text-light fs-6 mt-3 text-center">Total du panier : <?=totalPanier()?>€</h4>
                 </div>
             </div>
@@ -104,7 +107,7 @@ createCart();               // initialiser le panier.
         <!-- section supression panier 
         ======================= -->
         <section id="supression-panier">
-            <div class="container mt-3">
+            <div class="container mt-4">
                 <?php
                     if (isset($_SESSION['panier']) && !empty($_SESSION['panier'])) {
                         echo'<div class="container d-flex justify-content-center">

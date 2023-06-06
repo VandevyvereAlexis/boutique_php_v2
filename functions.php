@@ -1,4 +1,5 @@
 <?php
+
     // fonction permaettant d'Envoyer un tableau d'article 
     function getArticles() {
         return [
@@ -74,55 +75,55 @@
                 'detailleDescription' => 'Plongez dans l\'univers de l\'Omega Watch : une montre d\'exception alliant artisanat d\'élite et sophistication intemporelle. Découvrez un mariage parfait entre design raffiné et précision horlogère. Une montre qui incarne l\'excellence et l\'élégance à chaque instant.',
                 'picture'             => 'sujet_2.png'
             ],
-            // Article 6
+            // Article 9
             [
                 'name'                => 'Rolex',
-                'id'                  => '6',
+                'id'                  => '9',
                 'price'               => 7500.99,
                 'description'         => 'Moderne et élégant',
                 'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
                 'picture'             => 'sujet_3.png'
             ],
-            // Article 7 
+            // Article 10 
             [
                 'name'                => 'Apple',
-                'id'                  => '7',
+                'id'                  => '10',
                 'price'               => 550.99,
                 'description'         => 'Moderne et élégant',
                 'detailleDescription' => 'Découvrez l\'Apple Watch : une montre intelligente alliant technologie avancée et design élégant. Restez connecté, suivez votre santé et bénéficiez de fonctionnalités pratiques, le tout à votre poignet. Une expérience unique alliant style et innovation.',
                 'picture'             => 'sujet.png'
             ],
-            // Article 8
+            // Article 11
             [
                 'name'                => 'Omega',
-                'id'                  => '8',
+                'id'                  => '11',
                 'price'               => 1500.90,
                 'description'         => 'Moderne et élégant',
                 'detailleDescription' => 'Plongez dans l\'univers de l\'Omega Watch : une montre d\'exception alliant artisanat d\'élite et sophistication intemporelle. Découvrez un mariage parfait entre design raffiné et précision horlogère. Une montre qui incarne l\'excellence et l\'élégance à chaque instant.',
                 'picture'             => 'sujet_2.png'
             ],
-            // Article 6
+            // Article 12
             [
                 'name'                => 'Rolex',
-                'id'                  => '6',
+                'id'                  => '12',
                 'price'               => 7500.99,
                 'description'         => 'Moderne et élégant',
                 'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
                 'picture'             => 'sujet_3.png'
             ],
-            // Article 7 
+            // Article 13 
             [
                 'name'                => 'Apple',
-                'id'                  => '7',
+                'id'                  => '13',
                 'price'               => 550.99,
                 'description'         => 'Moderne et élégant',
                 'detailleDescription' => 'Découvrez l\'Apple Watch : une montre intelligente alliant technologie avancée et design élégant. Restez connecté, suivez votre santé et bénéficiez de fonctionnalités pratiques, le tout à votre poignet. Une expérience unique alliant style et innovation.',
                 'picture'             => 'sujet.png'
             ],
-            // Article 8
+            // Article 14
             [
                 'name'                => 'Omega',
-                'id'                  => '8',
+                'id'                  => '14',
                 'price'               => 1500.90,
                 'description'         => 'Moderne et élégant',
                 'detailleDescription' => 'Plongez dans l\'univers de l\'Omega Watch : une montre d\'exception alliant artisanat d\'élite et sophistication intemporelle. Découvrez un mariage parfait entre design raffiné et précision horlogère. Une montre qui incarne l\'excellence et l\'élégance à chaque instant.',
@@ -130,6 +131,10 @@
             ],
         ];
     }
+
+
+
+
 
     // Récupérer le produit qui correspond à l'Id fourni en paramètre
     function getArticleFromId($id) {
@@ -145,12 +150,20 @@
         // le renvoyer avec un return
     }
 
+
+
+
+
     // initaliser le panier 
     function createCart() {
        if (isset($_SESSION['panier']) == false) {  // si mon panier n'existe pas encore 
         $_SESSION['panier'] = [];               // je l'initialise
         }
     }
+
+
+
+
 
     function addToCart($article) {
         // on attribut une quandtité de 1 ( par defaut ) à l'articel 
@@ -171,6 +184,10 @@
         array_push($_SESSION['panier'], $article);
     }
 
+
+
+
+
     function totalPanier() {
         $totalPanier = 0; 
         foreach ($_SESSION['panier'] as $article) {
@@ -179,6 +196,10 @@
         }
         return $totalPanier;
     }
+
+
+
+
 
     // modifier la quantite de l'article dans le panier
     function updateQuantity() {
@@ -196,6 +217,10 @@
         }
     }
 
+
+
+
+
     function deleteArticle($productId) {
         if (isset($_SESSION['panier'])) {
             foreach ($_SESSION['panier'] as $key => $article) {
@@ -207,9 +232,19 @@
         }
     }
 
+
+
+
+
+
     function viderPanier() {
         $_SESSION['panier'] = array();
     }
+
+
+
+
+
 
     //function calculerFraisPort()
     function frais() {

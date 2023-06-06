@@ -24,9 +24,11 @@ createCart();               // initialiser le panier.
 
     <!-- main 
     ======================= -->
-    <main class="bg-dark" style="height: 100vh">
+    <main class="bg-dark pt-5" style="height: 100vh">
         <section id="validation-panier">
             <div class="container">
+            <!-- titre -->
+            <h1 class="text-light pt-3 text-center">Validation</h1>
 
 
                 <!-- PHP -->
@@ -91,6 +93,27 @@ createCart();               // initialiser le panier.
                                     <h4 class="text-success">Votre commande a été validée.</h4>
                                     <h4 class="fs-6 mt-4">Montant total : <?= totalPanier() + frais($_SESSION['panier']) ?>€</h4>
                                     <h4 class="fs-6 mt-4">Merci de votre confiance</h4>
+                                    <p>Expédition à partir du 
+                                        
+                                        <?php
+                                            // obteniir et afficher la date du jour formatée
+                                            $date = date("d-m-Y");
+                                            echo $date;
+                                        ?>
+                                    </p>
+                                    <p>Livraison estimée le :
+                                        <?php
+                                            // calcul : date du jour + 3 jours
+                                            // je récupère la date du jour en format Datetime (exigé sur la fonction date_add )
+                                            $date = new DateTime("now"); 
+                                            // on utilise date_add pour ajouter 3 jours
+                                            // date_interval... => permet d'obtenir l'intervalle de temps souhaité pour l'ajouter
+                                            date_add($date, date_interval_create_from_date_string("3 days"));
+                                            // à ce stade, $date est directement modifiée
+                                            // je l'affiche en la formatant : jour mois année => 09-06-2023
+                                            echo date_format($date, "d-m-Y");
+                                        ?>
+                                    </p>
                                 </div>
                                 <div class="modal-footer">
                                     <form action="index.php" method="post">

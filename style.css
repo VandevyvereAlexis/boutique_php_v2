@@ -23,11 +23,13 @@ body {
   background-attachment: fixed;
 }
 
+/* boutton */
 #image_fond a {
   text-decoration: none;
   border: 1px solid white;
 }
 
+/* boutton hover */
 #image_fond a:hover {
   background-color: azure;
   color: black !important;
@@ -44,4 +46,20 @@ body {
 
 #container-panier {
   border: 1px solid black;
+}
+
+
+
+/* footer.php  
+========================================================= */
+
+/* ---------- footer ---------- */
+
+/* footer */
+footer {
+  background-image: linear-gradient(to right, #000000c0, #ffffff1f), url(./images/image_fond.jpg);
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }

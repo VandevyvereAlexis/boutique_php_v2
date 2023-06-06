@@ -1,7 +1,7 @@
         <!-- footer 
         ======================= -->
-        <footer class="bg-dark">
-            <p class="m-0 text-light text-center">Texte boutique PHP</p>
+        <footer>
+            <p class="m-0 text-light text-center p-4">Texte boutique PHP</p>
         </footer>
 
 
