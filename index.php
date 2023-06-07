@@ -65,12 +65,12 @@ if (isset($_POST['vider_panier'])) {
                         echo '<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                                 <div class="card bg-dark text-light border border-secondary" id="card-home">
 
-                                <p class="card-text ms-3 mt-2">' . $article['price'] . '€</p>
-                                <img src="./images/' . $article['picture'] . '" class="card-img-top mx-auto p-4 pt-4 mb-4" alt="..." id="image-card">
+                                <p class="card-text ms-3 mt-2">' . $article['prix'] . '€</p>
+                                <img src="./images/' . $article['image'] . '" class="card-img-top mx-auto p-4 pt-4 mb-4" alt="..." id="image-card">
 
                                     <div class="card-body border border-secondary">
 
-                                        <h5 class="card-title">' . $article['name'] . '</h5>
+                                        <h5 class="card-title">' . $article['nom'] . '</h5>
                                         <p class="card-text">' . $article['description'] . '</p>
 
                                         <div class="d-flex justify-content-between">

@@ -1,135 +1,40 @@
 <?php
 
-    // fonction permaettant d'Envoyer un tableau d'article 
-    function getArticles() {
-        return [
-            // Article 1 
-            [
-                'name'                => 'Apple',
-                'id'                  => '1',
-                'price'               => 550.99,
-                'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Découvrez l\'Apple Watch : une montre intelligente alliant technologie avancée et design élégant. Restez connecté, suivez votre santé et bénéficiez de fonctionnalités pratiques, le tout à votre poignet. Une expérience unique alliant style et innovation.',
-                'picture'             => 'sujet.png'
-            ],
-            // Article 2
-            [
-                'name'                => 'Omega',
-                'id'                  => '2',
-                'price'               => 1500.90,
-                'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Plongez dans l\'univers de l\'Omega Watch : une montre d\'exception alliant artisanat d\'élite et sophistication intemporelle. Découvrez un mariage parfait entre design raffiné et précision horlogère. Une montre qui incarne l\'excellence et l\'élégance à chaque instant.',
-                'picture'             => 'sujet_2.png'
-            ],
-            // Article 3
-            [
-                'name'                => 'Rolex',
-                'id'                  => '3',
-                'price'               => 7500.99,
-                'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
-                'picture'             => 'sujet_3.png'
-            ],
-            // Article 4 
-            [
-                'name'                => 'Apple',
-                'id'                  => '4',
-                'price'               => 550.99,
-                'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Découvrez l\'Apple Watch : une montre intelligente alliant technologie avancée et design élégant. Restez connecté, suivez votre santé et bénéficiez de fonctionnalités pratiques, le tout à votre poignet. Une expérience unique alliant style et innovation.',
-                'picture'             => 'sujet.png'
-            ],
-            // Article 5
-            [
-                'name'                => 'Omega',
-                'id'                  => '5',
-                'price'               => 1500.90,
-                'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Plongez dans l\'univers de l\'Omega Watch : une montre d\'exception alliant artisanat d\'élite et sophistication intemporelle. Découvrez un mariage parfait entre design raffiné et précision horlogère. Une montre qui incarne l\'excellence et l\'élégance à chaque instant.',
-                'picture'             => 'sujet_2.png'
-            ],
-            // Article 6
-            [
-                'name'                => 'Rolex',
-                'id'                  => '6',
-                'price'               => 7500.99,
-                'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
-                'picture'             => 'sujet_3.png'
-            ],
-            // Article 7 
-            [
-                'name'                => 'Apple',
-                'id'                  => '7',
-                'price'               => 550.99,
-                'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Découvrez l\'Apple Watch : une montre intelligente alliant technologie avancée et design élégant. Restez connecté, suivez votre santé et bénéficiez de fonctionnalités pratiques, le tout à votre poignet. Une expérience unique alliant style et innovation.',
-                'picture'             => 'sujet.png'
-            ],
-            // Article 8
-            [
-                'name'                => 'Omega',
-                'id'                  => '8',
-                'price'               => 1500.90,
-                'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Plongez dans l\'univers de l\'Omega Watch : une montre d\'exception alliant artisanat d\'élite et sophistication intemporelle. Découvrez un mariage parfait entre design raffiné et précision horlogère. Une montre qui incarne l\'excellence et l\'élégance à chaque instant.',
-                'picture'             => 'sujet_2.png'
-            ],
-            // Article 9
-            [
-                'name'                => 'Rolex',
-                'id'                  => '9',
-                'price'               => 7500.99,
-                'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
-                'picture'             => 'sujet_3.png'
-            ],
-            // Article 10 
-            [
-                'name'                => 'Apple',
-                'id'                  => '10',
-                'price'               => 550.99,
-                'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Découvrez l\'Apple Watch : une montre intelligente alliant technologie avancée et design élégant. Restez connecté, suivez votre santé et bénéficiez de fonctionnalités pratiques, le tout à votre poignet. Une expérience unique alliant style et innovation.',
-                'picture'             => 'sujet.png'
-            ],
-            // Article 11
-            [
-                'name'                => 'Omega',
-                'id'                  => '11',
-                'price'               => 1500.90,
-                'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Plongez dans l\'univers de l\'Omega Watch : une montre d\'exception alliant artisanat d\'élite et sophistication intemporelle. Découvrez un mariage parfait entre design raffiné et précision horlogère. Une montre qui incarne l\'excellence et l\'élégance à chaque instant.',
-                'picture'             => 'sujet_2.png'
-            ],
-            // Article 12
-            [
-                'name'                => 'Rolex',
-                'id'                  => '12',
-                'price'               => 7500.99,
-                'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Explorez l\'univers de la Rolex : une icône intemporelle de l\'horlogerie alliant prestige, performance et artisanat d\'exception. Plongez dans l\'élégance inégalée d\'une montre synonyme de statut et de raffinement. L\'alliance parfaite entre sophistication et fiabilité, la Rolex incarne le luxe intemporel et l\'art de l\'horlogerie à son apogée.',
-                'picture'             => 'sujet_3.png'
-            ],
-            // Article 13 
-            [
-                'name'                => 'Apple',
-                'id'                  => '13',
-                'price'               => 550.99,
-                'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Découvrez l\'Apple Watch : une montre intelligente alliant technologie avancée et design élégant. Restez connecté, suivez votre santé et bénéficiez de fonctionnalités pratiques, le tout à votre poignet. Une expérience unique alliant style et innovation.',
-                'picture'             => 'sujet.png'
-            ],
-            // Article 14
-            [
-                'name'                => 'Omega',
-                'id'                  => '14',
-                'price'               => 1500.90,
-                'description'         => 'Moderne et élégant',
-                'detailleDescription' => 'Plongez dans l\'univers de l\'Omega Watch : une montre d\'exception alliant artisanat d\'élite et sophistication intemporelle. Découvrez un mariage parfait entre design raffiné et précision horlogère. Une montre qui incarne l\'excellence et l\'élégance à chaque instant.',
-                'picture'             => 'sujet_2.png'
-            ],
-        ];
+    // connexion à la base de donnée
+    function getConnection() 
+    {
+        // try : je tente une connexion
+        try {
+            $db = new PDO (
+                'mysql:host=localhost;dbname=boutique_en_ligne;charset=utf8',//infos:sgbd,nombase,adresse(host)+
+                'vdv_a', // pseudo utilisateur (root en local)
+                'As-VDV_11/03', // mot de passe (aucun en local)
+                array (PDO::ATTR_ERRMODE => PDO:: ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE, PDO:: FETCH_ASSOC) 
+            ); // options PDO : 1) affichage des erreurs / 2) récupération des données simplifiée
+
+            // si ça ne marche pas : je mets fin au code php en affichant l'erreur
+        }   catch (Exception $erreur) { // je récupère l'erreur en paramètre
+            die('Erreur : ' . $erreur->getMessage()); // je l'affiche et je mets fin au script
+        }
+
+        // je retourne la connexion stockée dans une variable
+        return $db;
+    }
+
+
+
+
+    // récupérer la liste des articles
+    function getArticles() 
+    {
+        // je me connecte à la base de données
+        $db = getConnection();
+
+        // j'exécute une requête qui va récupérer tous les articles
+        $results = $db->query('SELECT * FROM articles');
+
+        // je récupère les résultats et je les renvoie grâce à return
+        return $results->fetchAll();
     }
 
 
@@ -138,16 +43,11 @@
 
     // Récupérer le produit qui correspond à l'Id fourni en paramètre
     function getArticleFromId($id) {
-        //récupérer la liste des articles
-        $articles = getArticles();
-        // aller chercher dedans l'article qui comporte l'id en paramètre
-        foreach ($articles as $article) {
-            if ($article['id'] == $id) {
-                // le renvoyer avce un return
-                return $article;
-            }
-        }
-        // le renvoyer avec un return
+        $db = getConnection(); // je me connecte ) la bdd
+        // JAMAIS DE VARIABLE PHP DIRECTEMENT DANS UNE REQUETE (risque d'injection SQL )
+        $query = $db->prepare('SELECT * FROM Articles WHERE id = ?'); // je prepare ma requête
+        $query->execute([$id]); // je l'exécute avec le bon paramètre
+        return $query->fetch(); // je retourne l'article sous forme de tableau associatif
     }
 
 
@@ -156,8 +56,8 @@
 
     // initaliser le panier 
     function createCart() {
-       if (isset($_SESSION['panier']) == false) {  // si mon panier n'existe pas encore 
-        $_SESSION['panier'] = [];               // je l'initialise
+       if (isset($_SESSION['panier']) == false) {   // si mon panier n'existe pas encore 
+        $_SESSION['panier'] = [];                   // je l'initialise
         }
     }
 
@@ -192,7 +92,7 @@
         $totalPanier = 0; 
         foreach ($_SESSION['panier'] as $article) {
             // Quantiter x prix 
-            $totalPanier += $article['quantite'] * $article['price'];
+            $totalPanier += $article['quantite'] * $article['prix'];
         }
         return $totalPanier;
     }

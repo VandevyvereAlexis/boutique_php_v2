@@ -41,17 +41,17 @@ createCart();               // initialiser le panier.
             <div class="container" id="produit_card" style="height: 100vh">
 
                 <!-- titre section -->
-                <h2><?= $article['name']?></h2>
+                <h2><?= $article['nom']?></h2>
                 <!-- card -->
                 <div class="card mb-3 text-center bg-dark border border-secondary p-5">
                     <!-- image produit -->
-                    <img src="./images/<?= $article['picture'] ?>" class="card-img-top mx-auto pb-4" alt="..." style="width: 200px">
+                    <img src="./images/<?= $article['image'] ?>" class="card-img-top mx-auto pb-4" alt="..." style="width: 200px">
                     <!-- nom produit -->
-                    <h5 class="card-title text-light border-top border-secondary pt-3"><?= $article['name'] ?></h5>
+                    <h5 class="card-title text-light border-top border-secondary pt-3"><?= $article['nom'] ?></h5>
                     <!-- détails produit -->
-                    <p class="card-text text-light"><?= $article['price'] ?>€</p>
+                    <p class="card-text text-light"><?= $article['prix'] ?>€</p>
                     <p class="card-text text-light"><?= $article['description'] ?></p>
-                    <p class="card-text text-light"><small class="text-light"><?= $article['detailleDescription'] ?></small></p>
+                    <p class="card-text text-light"><small class="text-light"><?= $article['description_detaillee'] ?></small></p>
                     <!-- button ajout panier -->
                     <form method="GET" action="./panier.php" class="d-flex">
                         <input type="hidden" name="productId" value="' . $article['id'] . '">

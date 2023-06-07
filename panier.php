@@ -54,15 +54,15 @@ createCart();               // initialiser le panier.
                         <div class="row align-items-center">
 
                             <div class="col-md-2 text-center">
-                                <img src="./images/' . $articlePanier['picture'] . '" alt="..." style="width: 100px">
+                                <img src="./images/' . $articlePanier['image'] . '" alt="..." style="width: 100px">
                             </div>
 
                             <div class="col-md-2 text-center">
-                                <h4 class="fs-6 m-0 text-light">' . $articlePanier['name'] . '</h4>
+                                <h4 class="fs-6 m-0 text-light">' . $articlePanier['nom'] . '</h4>
                             </div>
 
                             <div class="col-md-2 text-center">
-                                <h4 class="fs-6 m-0 text-light">' . $articlePanier['price'] . '€</h4>
+                                <h4 class="fs-6 m-0 text-light">' . $articlePanier['prix'] . '€</h4>
                             </div>
 
                             <form method="POST" action="./panier.php" class="col-md-3 d-flex align-items-center justify-content-between">
