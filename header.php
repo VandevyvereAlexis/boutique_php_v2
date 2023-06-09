@@ -4,11 +4,11 @@
 
     <!-- navbar 
     ======================= -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" data-bs-theme="dark">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg fixed-top border-bottom rounded bg-dark" data-bs-theme="dark">
+        <div class="container-fluid mx-auto">
 
             <!-- Titre navbar-->
-            <a class="navbar-brand text-center" href="./index.php">The boutique watch</a>
+            <a class="navbar-brand text-light" href="./index.php">The boutique watch</a>
 
             <!-- Menu burger -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,21 +16,28 @@
             </button>
 
             <!-- Liens -->
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-                <div class="navbar-nav me-5 pe-2">
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
 
                     <!-- Lien 1 -->
-                    <a class="nav-link pe-5 me-5" href="./index.php">Accueil</a>
+                    <a class="nav-link text-light" href="./index.php">Accueil</a>
                     <!-- Lien 2 -->
-                    <a class="nav-link me-5 pe-5" href="./panier.php">Panier</a>
+                    <a class="nav-link text-light" href="./gammes.php">Gammes</a>
+                    <!-- Lien 3 -->
+                    <a class="nav-link text-light" href="./panier.php">Panier</a>
+                    <!-- Lien 4 -->
+                    <a class="nav-link text-light" href="./connexion.php" id="co-1">Connexion / Inscription</a>
 
                 </div>
             </div>
 
             <!-- Logo panier -->
-            <a href="./panier.php" class="me-5">
-                <i class="fa-solid fa-basket-shopping position relative" style="color: #ffffff;"><span class="ps-3"><?= count($_SESSION['panier']) ?></span></i>
-            </a>
+            <div class="d-flex align-items-center border ps-5 rounded" id="logo-panier">
+                <a class="nav-link text-light pe-5" href="./connexion.php" id="co-2">Connexion / Inscription</a>
+                <a href="./panier.php" class="me-5">
+                    <i class="fa-solid fa-basket-shopping position relative p-2" style="color: #ffffff;" id="logo_panier"><span class="ps-2 fs-6"><?= count($_SESSION['panier']) ?></span></i>
+                </a>
+            </div>
 
         </div>
     </nav>

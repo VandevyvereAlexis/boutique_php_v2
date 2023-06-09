@@ -38,6 +38,37 @@
     }
 
 
+    ////////////////////////////////////////////////////////////// Fonction gammes ///////////////////////////////////////////////////////////////
+    // récupérer la liste des articles
+    function getGamme() 
+    {
+         // je me connecte à la base de données
+        $db = getConnection();
+
+         // j'exécute une requête qui va récupérer tous les articles
+         $results = $db->query('SELECT * FROM gammes');
+
+         // je récupère les résultats et je les renvoie grâce à return
+        return $results->fetchAll();
+    }
+
+
+
+    ////////////////////////////////////////////////////////////// Recuperation de l'article par son id ///////////////////////////////////////////////////////////////
+    function getArticlesBygamme($id) 
+    {
+         // je me connecte à la base de données
+        $db = getConnection();
+
+        // requête pour récupérer un article par son id_gamme
+        $query = $db->prepare('SELECT * FROM articles WHERE id_gamme = ?');
+
+        // exution avec le bon paramèter 
+        $query->execute ([$id]);
+
+         // je récupère l'article sous forme de tableau associatif
+        return $query->fetchAll();
+    }
 
 
 
@@ -121,14 +152,10 @@
 
 
 
-    function deleteArticle($productId) {
-        if (isset($_SESSION['panier'])) {
-            foreach ($_SESSION['panier'] as $key => $article) {
-                if ($article['id'] === $productId) {
-                    array_splice($_SESSION['panier'], $key, 1);
-                    break;
-                }
-            }
+    function deletedArticle($id) {
+        for ($i = 0; $i < count($_SESSION['panier']); $i++)
+        if ($_SESSION['panier'][$i]['id'] == $id) {
+            array_splice($_SESSION['panier'], $i, 1);
         }
     }
 

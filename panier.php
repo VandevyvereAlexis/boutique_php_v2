@@ -23,9 +23,9 @@ createCart();               // initialiser le panier.
 
     <!-- main 
     ======================= -->
-    <main class="pt-5" style="height: 100vh;">
+    <main class="pt-5" id="main_panier">
         <!-- Titre -->
-        <h1 class="text-light pt-3 text-center">Panier</h1>
+        <h1 class="text-light pt-3 text-center">Votre panier</h1>
 
         <!-- PHP -->
         <?php 
@@ -40,9 +40,7 @@ createCart();               // initialiser le panier.
                 addToCart($article);                            // 3. Ajouter l'article au panier et tester le résultat
             }
             if (isset($_POST['deletedArticleId'])) {            // fonction supression article
-                //var_dump($_POST);
-                $articlePanierId = $_POST['deletedArticleId'];
-                deleteArticle($articlePanierId);
+                deletedArticle($_POST['deletedArticleId']);
             }
             if (isset($_POST['viderPanier'])) {                 // fonction supression panier
                 viderPanier();
@@ -50,15 +48,15 @@ createCart();               // initialiser le panier.
 
 
             foreach ($_SESSION['panier'] as $articlePanier) {
-                echo'<div class="container mb-3 mt-5 p-3 mx-auto border border-secondary" id="container-panier">
+                echo'<div class="container mb-3 mt-5 p-2 mx-auto border border-secondary rounded" id="container-panier">
                         <div class="row align-items-center">
 
-                            <div class="col-md-2 text-center">
-                                <img src="./images/' . $articlePanier['image'] . '" alt="..." style="width: 100px">
+                            <div class="col-md-2 text-center border-end">
+                                <img src="./images/' . $articlePanier['image'] . '" alt="...">
                             </div>
 
                             <div class="col-md-2 text-center">
-                                <h4 class="fs-6 m-0 text-light">' . $articlePanier['nom'] . '</h4>
+                                <h4 class="fs-6 m-0 text-light">' . $articlePanier['description'] . '</h4>
                             </div>
 
                             <div class="col-md-2 text-center">
@@ -68,20 +66,20 @@ createCart();               // initialiser le panier.
                             <form method="POST" action="./panier.php" class="col-md-3 d-flex align-items-center justify-content-between">
 
                                 <input type="hidden" name="modifiedArticleId" value="' . $articlePanier['id'] . '">
-                                <input class="col-3 offset-2 m-0" type="number" min="1" max="10" name="newQuantity" value="' . $articlePanier['quantite'] . '">
+                                <input class="col-3 offset-2 m-0 text-center bg-transparent text-light border-secondary rounded rounded border-1" type="number" min="1" max="10" name="newQuantity" value="' . $articlePanier['quantite'] . '">
 
-                                <button type="submit" class="btn btn-light">
+                                <button type="submit" class="btn bg-transparent text-light border-secondary rounded border-1">
                                     Modifier
                                 </button>
 
                             </form>
 
-                            <form class="col-md-3 text-center" action="panier.php" method="post">
+                            <form class="col-md-3 text-center" action="./panier.php" method="post">
 
                                 <input type="hidden" name="deletedArticleId" value="' . $articlePanier['id'] . '">
 
-                                <button type ="submit" class="btn btn-danger mt-lg-8">
-                                    Supprimer
+                                <button type="hidden" class="bg-transparent border border-0 mt-lg-8">
+                                    <i class="fa-sharp fa-solid fa-circle-xmark" style="color: #ff2600;"></i>
                                 </button>
 
                             </form>
@@ -98,7 +96,7 @@ createCart();               // initialiser le panier.
             <div class="container">
                 <div class="row">
                     <!-- total panier -->
-                    <h4 class="text-light fs-6 mt-3 text-center">Total du panier : <?=totalPanier()?>€</h4>
+                    <h4 class="text-light fs-4 mt-3 text-center">Total du panier : <?=totalPanier()?>€</h4>
                 </div>
             </div>
         </section>
@@ -110,7 +108,7 @@ createCart();               // initialiser le panier.
             <div class="container mt-4">
                 <?php
                     if (isset($_SESSION['panier']) && !empty($_SESSION['panier'])) {
-                        echo'<div class="container d-flex justify-content-center">
+                        echo'<div class="container d-flex justify-content-center pb-2">
                                 <form class="col-lg-2" action="panier.php" method="post">
 
                                     <button type="submit" class="btn btn-danger me-4" name="viderPanier">

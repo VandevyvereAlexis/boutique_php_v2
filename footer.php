@@ -1,7 +1,7 @@
         <!-- footer 
         ======================= -->
-        <footer>
-            <p class="m-0 text-light text-center p-4">Texte boutique PHP</p>
+        <footer class="border-top rounded bg-dark border-info-subtle">
+            <p class="m-0 text-light text-center p-1">© The boutique watch 2023 - Tous droits réservés</p>
         </footer>
 
 

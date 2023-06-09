@@ -24,38 +24,50 @@ createCart();               // initialiser le panier.
 
     <!-- main 
     ======================= -->
-    <main class="bg-dark pt-5" style="height: 100vh">
-        <section id="validation-panier">
-            <div class="container">
+    <main class="bg-dark pt-5" id="validation-panier">
             <!-- titre -->
-            <h1 class="text-light pt-3 text-center">Validation</h1>
+            <h1 class="text-light pt-3 text-center">Votre commande</h1>
 
 
                 <!-- PHP -->
                 <?php
 
                 foreach ($_SESSION['panier'] as $articlePanier) {
-                    echo '<div class="container mb-3 mt-5 p-3 mx-auto border border-secondary" id="container-panier">
-                            <div class="row align-items-center">
+                    echo'<div class="container mb-3 mt-5 p-2 mx-auto border border-secondary rounded" id="container-panier">
+                        <div class="row align-items-center">
 
-                                <div class="col-md-2 text-center">
-                                    <img src="./images/' . $articlePanier['image'] . '" alt="..." style="width: 100px">
-                                </div>
-
-                                <div class="col-md-2 text-center">
-                                    <h4 class="fs-6 m-0 text-light">' . $articlePanier['nom'] . '</h4>
-                                </div>
-
-                                <div class="col-md-2 text-center">
-                                    <h4 class="fs-6 m-0 text-light">' . $articlePanier['prix'] . '€</h4>
-                                </div>
-
-                                <div class="col-md-2 text-center">
-                                    <h4 class="fs-6 m-0 text-light">' . $articlePanier['quantite'] . '</h4>
-                                </div>
-
+                            <div class="col-md-2 text-center border-end">
+                                <img src="./images/' . $articlePanier['image'] . '" alt="montre">
                             </div>
-                        </div>';
+
+                            <div class="col-md-2 text-center">
+                                <h4 class="fs-6 m-0 text-light">' . $articlePanier['nom'] . '</h4>
+                            </div>
+
+                            <div class="col-md-2 text-center">
+                                <h4 class="fs-6 m-0 text-light">' . $articlePanier['description'] . '</h4>
+                            </div>
+
+                            <div class="col-md-2 text-center">
+                                <h4 class="fs-6 m-0 text-light">' . $articlePanier['prix'] . '€</h4>
+                            </div>
+
+                            <div class="col-md-2 text-center">
+                                    <h4 class="fs-6 m-0 text-light">' . $articlePanier['quantite'] . '</h4>
+                            </div>
+
+                            <form class="col-md-2 text-center" action="./panier.php" method="post">
+
+                                <input type="hidden" name="deletedArticleId" value="' . $articlePanier['id'] . '">
+
+                                <button type="hidden" class="bg-transparent border border-0 mt-lg-8">
+                                    <i class="fa-sharp fa-solid fa-circle-xmark" style="color: #ff2600;"></i>
+                                </button>
+
+                            </form>
+                                
+                        </div>
+                    </div>';
                 }
                 ?>
 
@@ -67,14 +79,14 @@ createCart();               // initialiser le panier.
         <!-- section total panier validation 
         ======================= -->
         <section id="total-panier-validation">
-            <div class="container">
-                <div class="row text-center">
+            <div class="container pt-4">
+                <div class="row text-center rounded" id="row_total-panier-validation">
                     <!-- Total panier -->
-                    <h4 class="text-light fs-6 mt-4">Total du panier : <?= totalPanier() ?>€</h4>
+                    <h4 class="text-light fs-5 mt-4" id="">Total du panier : <?= totalPanier() ?>€</h4>
                     <!-- Frais de port -->
-                    <?php echo '<h4 class="fs-6 m-0 text-light mt-2">Frais de port : ' . frais($_SESSION['panier']) . '€</h4>'; ?>
+                    <?php echo '<h4 class="fs-5 m-0 text-light mt-2">Frais de port : ' . frais($_SESSION['panier']) . '€</h4>'; ?>
                     <!-- Total panier + frais de port -->
-                    <h4 class="text-light fs-6 mt-4">Total du panier : <?= totalPanier() + frais($_SESSION['panier']) ?>€</h4>
+                    <h4 class="text-light fs-5 mt-4">Total du panier : <?= totalPanier() + frais($_SESSION['panier']) ?>€</h4>
 
                     <!-- Boutton modal -->
                     <button type="button" class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -84,16 +96,15 @@ createCart();               // initialiser le panier.
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                            <div class="modal-content">
+                            <div class="modal-content bg-dark text-light" data-bs-theme="dark">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Félicitation !</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <h4 class="text-success">Votre commande a été validée.</h4>
-                                    <h4 class="fs-6 mt-4">Montant total : <?= totalPanier() + frais($_SESSION['panier']) ?>€</h4>
-                                    <h4 class="fs-6 mt-4">Merci de votre confiance</h4>
-                                    <p>Expédition à partir du 
+                                    <h4 class="fs-6 mb-4">Montant total : <?= totalPanier() + frais($_SESSION['panier']) ?>€</h4>
+                                    <p class="m-0">Expédition à partir du 
                                         
                                         <?php
                                             // obteniir et afficher la date du jour formatée
@@ -114,6 +125,7 @@ createCart();               // initialiser le panier.
                                             echo date_format($date, "d-m-Y");
                                         ?>
                                     </p>
+                                    <h4 class="fs-6 mt-4">Merci de votre confiance.</h4>
                                 </div>
                                 <div class="modal-footer">
                                     <form action="index.php" method="post">
