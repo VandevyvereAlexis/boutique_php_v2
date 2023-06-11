@@ -9,7 +9,7 @@ createCart();               // initialiser le panier.
 if (isset($_POST['vider_panier'])) {
     viderPanier();
 }
-    var_dump($_POST);
+    //var_dump($_POST);
 ?>
 
 
@@ -36,7 +36,6 @@ if (isset($_POST['vider_panier'])) {
         <div class="container-fluid border-bottom border-info-subtle rounded" id="image_fond">
             <div class="row">
                 <div class="col text-center mt-5">
-                    <!-- Titre -->
                     <h1 class="text-light text-center mt-5 pt-5"><span class="fw-bolder">Bienvenue dans l'univers du temps raffiné</span><br><span class="fs-3">Explorez notre collection de montres exquises !</span></h1>
                     <!-- button -->
                     <div class="mt-5">
