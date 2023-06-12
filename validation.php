@@ -1,9 +1,10 @@
 <!-- inclusion 
 ======================= -->
 <?php
+    // on demarre la sessions PHP
+session_start();            // initialiser la session et accéder à la superglobal $_SESSION 'tableau associatif'.
 include 'functions.php';    // inclusion fichier des fonctions --> appeler les fonctions concernées sur ce fichier.
 include 'head.php';         // inclusion du head.
-session_start();            // initialiser la session et accéder à la superglobal $_SESSION 'tableau associatif'.
 createCart();               // initialiser le panier.
 ?>
 
@@ -125,7 +126,7 @@ createCart();               // initialiser le panier.
                                             echo date_format($date, "d-m-Y");
                                         ?>
                                     </p>
-                                    <h4 class="fs-6 mt-4">Merci de votre confiance.</h4>
+                                     <h4 class="fs-6 mt-4"> <?= $_SESSION["user"]["prenom"] . " " . $_SESSION["user"]["nom"] ?> merci de votre confiance.</h4>
                                 </div>
                                 <div class="modal-footer">
                                     <form action="index.php" method="post">

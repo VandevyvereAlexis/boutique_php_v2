@@ -6,67 +6,25 @@ body {
   font-family: 'Quicksand', sans-serif;
 }
 
-/* gammes.php  
-========================================================= */
 
-/* ---------- main ---------- */
 
-/* background */
-#main_gammes {
-    background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-}
 
-#titre_gamme h2{
-  font-family: 'Gruppo', sans-serif;
-  backdrop-filter: blur(7px);
-  background-color: rgba(0, 0, 0, 0.514);
-}
 
 /* header.php  
 ========================================================= */
 
 /* ---------- navbar ---------- */
 
+#navbarNavAltMarkup a {
+  font-family: 'Gruppo', sans-serif;
+}
+
 #logo_panier span {
   font-size: 10px;
   font-family: 'Gruppo', sans-serif;
 }
 
-#navbarNavAltMarkup a {
-  font-family: 'Gruppo', sans-serif;
-}
 
-header #co-1 {
-  display: none;
-  font-family: 'Gruppo', sans-serif;
-}
-
-header #co-2 {
-  font-family: 'Gruppo', sans-serif;
-}
-
-
-
-
-
-/* connexion.php  
-========================================================= */
-
-/* ---------- section connexion ---------- */
-
-#connexion {
-  background-image: linear-gradient(to right, #000000c0, #ffffff1f), url(./images/bg_abstract.png);
-  width: 100%;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
 
 
 
@@ -98,10 +56,17 @@ header #co-2 {
   color: black !important;
 }
 
-/* ---------- section article ---------- */
+
+
+
+
+/* produit.php  
+========================================================= */
+
+/* ---------- main ---------- */
 
 /* background */
-#articles {
+#details-produit {
   background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
   width: 100%;
   background-size: cover;
@@ -110,77 +75,31 @@ header #co-2 {
   background-repeat: no-repeat;
 }
 
-/* titre section articles */
-#articles h2 {
-  font-family: 'Gruppo', sans-serif;
+#image_details_produit {
   backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.514);
 }
 
-#card-home #prix {
-  font-family: 'Gruppo', sans-serif;
+#image_details_produit img {
+  width: 9rem;
 }
 
-/* header card */
-#card-home {
-  backdrop-filter: blur(7px);
-}
-
-#card-home img {
-  width: 6rem;
-}
-
-#card-home #description {
-  font-family: 'Gruppo', sans-serif;
-}
-
-#container-panier {
-  border: 1px solid black;
-}
-
-/* validation.php  
-========================================================= */
-#validation-panier {
-  background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-}
-
-#validation-panier h1 {
-  font-family: 'Gruppo', sans-serif;
-}
-
-#total-panier-validation {
-  font-family: 'Gruppo', sans-serif;
-}
-
-
-
-/* connexion.php  
-========================================================= */
-#connexion {
-  background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-}
-
-#connexion .border-secondary {
+#card-home_detail_produit {
   backdrop-filter: blur(7px);
   background-color: rgba(0, 0, 0, 0.514);
 }
 
 
+
+
+
 /* panier.php  
 ========================================================= */
+
+/* ---------- main ---------- */
+
+/* background */
 #main_panier {
-  /* background */
   background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
   width: 100%;
   background-size: cover;
@@ -208,6 +127,37 @@ header #co-2 {
   font-family: 'Gruppo', sans-serif;
 }
 
+#container-panier {
+  border: 1px solid black;
+}
+
+
+
+
+
+/* validation.php  
+========================================================= */
+#validation-panier {
+  background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+#validation-panier h1 {
+  font-family: 'Gruppo', sans-serif;
+}
+
+#total-panier-validation {
+  font-family: 'Gruppo', sans-serif;
+}
+
+
+
+
 
 /* footer.php  
 ========================================================= */
@@ -221,12 +171,93 @@ footer p {
 }
 
 
-/* produit.php  
+
+
+
+/* connexion.php  
 ========================================================= */
 
-/* ---------- main ---------- */
+/* ---------- section connexion ---------- */
 
-#details-produit {
+#connexion {
+  background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+#connexion #row_connexion {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.514) !important;
+}
+
+#connexion #col_connexion {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.242) !important;
+}
+
+
+
+
+
+/* inscription.php  
+========================================================= */
+
+/* ---------- section inscription ---------- */
+
+#inscription {
+  background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+#inscription #row_inscription {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.514);
+}
+
+#inscription #col_inscription {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.242);
+}
+
+
+
+
+
+/* gammes.php  
+========================================================= */
+
+/* -------------- main ----------------- */
+
+/* background */
+#gammes {
+    background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: 'Gruppo', sans-serif;
+}
+
+/* titre gamme */
+#titre_gamme h1 {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.514);
+}
+
+/* ---------- section gammes ---------- */
+
+/* background */
+#articles_gamme {
   background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
   width: 100%;
   background-size: cover;
@@ -235,40 +266,102 @@ footer p {
   background-repeat: no-repeat;
 }
 
-#image_details_produit {
+/* header card */
+#card-gamme {
   backdrop-filter: blur(7px);
-  background-color: rgba(0, 0, 0, 0.514);
 }
 
-#image_details_produit img {
-  width: 9rem;
+/* taille image */
+#card-gamme img {
+  width: 6rem;
 }
 
-#card-home_detail_produit {
-  backdrop-filter: blur(7px);
-  background-color: rgba(0, 0, 0, 0.514);
+
+
+
+
+
+
+/* profil.php  
+========================================================= */
+#main-profil {
+    /* background */
+    background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
 }
+
+#main-profil #card-profil-1 {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.514) !important;
+  font-family: 'Gruppo', sans-serif;
+  height: 10rem;
+}
+
+#main-profil #card-profil-2 {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.514) !important;
+  font-family: 'Gruppo', sans-serif;
+  height: 10rem;
+}
+
+#main-profil #card-profil-3 {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.514) !important;
+  font-family: 'Gruppo', sans-serif;
+  height: 10rem;
+}
+
+#main-profil #card-profil-4 {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.514) !important;
+  font-family: 'Gruppo', sans-serif;
+  height: 10rem;
+}
+
+#main-profil h1 {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.514) !important;
+  font-family: 'Gruppo', sans-serif;
+}
+
+
+
+
+/* profil_modif_infos.php  
+========================================================= */
+#profil_modif_infos {
+  /* background */
+  background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+
+
+
+
 
 
 /* medias queries
 ========================================================= */
 
-/* ---------- 991px ---------- */
+/* ---------------------- 991px ------------------------- */
 
 @media screen and (max-width : 991px) {
-
-  /* lien inscription navbar */
-  header #co-2 {
-    display: none;
-  }
-
-  header #co-1 {
-    display: flex;
-  }
 
   #card-home_detail_produit {
     width: 100%;
   }
+
   #row_connexion {
   flex-wrap: wrap !important;
   border: hidden !important;
@@ -286,6 +379,13 @@ footer p {
   #col_connexion_2 {
     backdrop-filter: blur(7px) !important;
     background-color: rgba(0, 0, 0, 0.514) !important;
+  }
+
+  /* ----- header ----- */
+
+  /* section logo panier navbar */
+  header #section_logo_panier {
+    display: none !important;
   }
 }
 
@@ -320,14 +420,3 @@ footer p {
   }
 }
 
-/* ---------- 400 px ---------- */
-
-@media screen and (max-width : 400px) {
-  #logo_panier {
-    display: none;
-  }
-
-  #logo-panier {
-    border: hidden !important;
-  }
-}

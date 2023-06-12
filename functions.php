@@ -36,6 +36,7 @@
                 // On récupère les données en les protégeant
                 $nom = strip_tags($_POST["nom"]);
                 $prenom = strip_tags($_POST["prenom"]);
+                $email = strip_tags($_POST["email"]);
 
                     if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
                         die("L'adresse email est incorrecte");
@@ -53,29 +54,16 @@
                     $query = $db->prepare($sql);
 
                     // on récupère l'id du nouvel utilisateur
-                    $id =$db->lastInsertId();
+                    $id = $db->lastInsertId();
 
                     $query->bindValue(":nom", $nom, PDO::PARAM_STR);
                     $query->bindValue(":prenom", $prenom, PDO::PARAM_STR);
+                    $query->bindValue(":email", $email, PDO::PARAM_STR);
                     $query->bindValue(":email", $_POST["email"], PDO::PARAM_STR);
 
                     $query->execute();
 
                     // on demarre la session php
-                    // session_start();     // deja fait sur les pages
-                
-                    // on stocke dans $_SESSION les informations de l'utilisateur
-                    $_SESSION["user"] = [
-                        "id"        => $id,
-                        "nom"       => $nom,
-                        "prenom"    => $prenom,
-                        "email"     => $_POST["email"]
-                    ];
-
-                    var_dump($_SESSION);
-
-                    // on redirige vers la page index.php
-                    header("Location: index.php");
 
             } else {
                 die("le formulaire est incomplet");
@@ -131,7 +119,7 @@
                     "email"     => $user["email"]
                 ];
 
-                var_dump($_SESSION);
+                // var_dump($_SESSION);
 
                 // on redirige vers la page index.php
                 header("Location: index.php");

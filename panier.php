@@ -1,9 +1,10 @@
 <!-- inclusion 
 ======================= -->
 <?php
+    // on demarre la sessions PHP
+session_start();            // initialiser la session et accéder à la superglobal $_SESSION 'tableau associatif'.
 include 'functions.php';    // inclusion fichier des fonctions --> appeler les fonctions concernées sur ce fichier.
 include 'head.php';         // inclusion du head.
-session_start();            // initialiser la session et accéder à la superglobal $_SESSION 'tableau associatif'.
 createCart();               // initialiser le panier.
 ?>
 

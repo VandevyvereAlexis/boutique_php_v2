@@ -1,22 +1,30 @@
 <!-- inclusion 
 ======================= -->
 <?php
-include 'functions.php';    // inclusion fichier des fonctions --> appeler les fonctions concernées sur ce fichier. 
-include 'head.php';         // inclusion du head.
-session_start();            // initialiser la session et accéder à la superglobal $_SESSION 'tableau associatif'.
-createCart();               // initialiser le panier.
-// var_dump($_SESSION);
-if (isset($_POST['vider_panier'])) {
-    viderPanier();
-}
-getInscription();
+    session_start();                    // on demarre la sessions PHP "initialisation de la session, accès à la superglobal $_SESSION (tableau associatif)".
+
+    if(isset($_SESSION["user"])) {      // permet d'éviter de retourner au formulaire d'inscription quand l'utilisateur est deja connecter à la place on renvoie sur profil.php
+        header("Location: profil.php");
+        exit;
+    }
+
+    include 'functions.php';            // inclusion fichier des fonctions --> appeler les fonctions concernées sur ce fichier. 
+
+    include 'head.php';                 // inclusion du head.
+
+    createCart();                       // initialiser le panier.
 ?>
+
+
+
 
 
 <!-- body 
 ======================= -->
-
 <body>
+
+
+
 
 
     <!-- header 
@@ -25,56 +33,61 @@ getInscription();
     include 'header.php';   // inclusion fichier header.php
     ?>
 
-    <?php 
-        //var_dump($_POST)
-    ?>
+
+
+
 
     <!-- main 
     ======================= -->
-    <main class="bg-dark d-flex align-items-center" id="connexion">
+    <main class="d-flex align-items-center" id="inscription">
         <div class="container">
-            <div class="row justify-content-center grid gap-5 flex-nowrap rounded border border-secondary p-5" id="row_connexion">
+            <div class="row justify-content-center rounded border border-secondary p-4" id="row_inscription">
+                <div class="col-md-6 text-white rounded border border-secondary" id="col_inscription">
 
-                <!-- Formulaire inscription -->
-                <div class="col-md-6 bg-transparent text-white rounded border border-secondary" id="col_connexion_2">
-                    <div class="container container-full-height">
-                        <h2 class="mt-3 mb-3 text-center">Inscription</h2>
+                    <!-- titre -->
+                    <h2 class="text-center mt-3 mb-3">Inscription</h2>
 
-                        <form method="post" action="./connexion.php">
-                            <div class="form-group">
-                                <label for="nom">Nom</label>
-                                <input type="text" class="form-control mb-3" name="nom" id="nom" placeholder="Entrez votre nom">
-                            </div>
+                    <!-- formulaire inscription -->
+                    <form method="post" action="./connexion.php">
 
-                            <div class="form-group">
-                                <label for="prenom">prenom</label>
-                                <input type="text" class="form-control mb-3" name="prenom" id="prenom" placeholder="Entrez votre prenom">
-                            </div>
+                        <!-- nom -->
+                        <div class="form-group">
+                            <label for="nom">Nom</label>
+                            <input type="text" class="form-control mb-3" name="nom" id="nom" placeholder="Entrez votre nom">
+                        </div>
 
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control mb-3" name="email" id="email" placeholder="Entrez votre email">
-                            </div>
+                        <!-- prenom -->
+                        <div class="form-group">
+                            <label for="prenom">Prénom</label>
+                            <input type="text" class="form-control mb-3" name="prenom" id="prenom" placeholder="Entrez votre prenom">
+                        </div>
 
-                            <div class="form-group">
-                                <label for="password">Mot de passe</label>
-                                <input type="password" class="form-control mb-3" name="password" id="password" placeholder="Entrez votre mot de passe">
-                            </div>
+                        <!-- email -->
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control mb-3" name="email" id="email" placeholder="Entrez votre email">
+                        </div>
 
-                            <!--<div class="form-group">
-                                <label for="confirmPassword">Confirmez le mot de passe</label>
-                                <input type="password" class="form-control" name="password_retype" id="confirmPassword" placeholder="Confirmez votre mot de passe">
-                            </div>-->
+                        <!-- mot de passe -->
+                        <div class="form-group">
+                            <label for="password">Mot de passe</label>
+                            <input type="password" class="form-control mb-3" name="password" id="password" placeholder="Entrez votre mot de passe">
+                        </div>
 
+                        <!-- button + lien -->
+                        <div class="d-flex">
+                            <!-- s'inscrire -->
                             <button type="submit" class="btn btn-light mt-5 mb-4">S'inscrire</button>
-                            <a href="./connexion.php">Connexion</a>
-                        </form>
-                    </div>
+                            <!-- lien page connexion -->
+                            <a href="./connexion.php" class="pt-5 mt-3 ms-3 text-white">Connexion</a>
+                        </div>
+
+                    </form>
+                    
                 </div>
             </div>
         </div>
     </main>
-
 
 
 
@@ -85,5 +98,9 @@ getInscription();
     <?php
     include 'footer.php' // inclusion fichier footer.php
     ?>
+
+
+
+
 
 </body>

@@ -1,15 +1,19 @@
 <!-- inclusion 
 ======================= -->
 <?php
+    // on demarre la sessions PHP
+session_start();            // initialiser la session et accéder à la superglobal $_SESSION 'tableau associatif'.
 include 'functions.php';    // inclusion fichier des fonctions --> appeler les fonctions concernées sur ce fichier. 
 include 'head.php';         // inclusion du head.
-session_start();            // initialiser la session et accéder à la superglobal $_SESSION 'tableau associatif'.
 createCart();               // initialiser le panier.
 // var_dump($_SESSION);
 if (isset($_POST['vider_panier'])) {
     viderPanier();
 }
     //var_dump($_POST);
+    if(isset($_POST["email"])) {
+        getFormConnex();
+    }
 ?>
 
 
@@ -36,7 +40,10 @@ if (isset($_POST['vider_panier'])) {
         <div class="container-fluid border-bottom border-info-subtle rounded" id="image_fond">
             <div class="row">
                 <div class="col text-center mt-5">
-                    <h1 class="text-light text-center mt-5 pt-5"><span class="fw-bolder">Bienvenue dans l'univers du temps raffiné</span><br><span class="fs-3">Explorez notre collection de montres exquises !</span></h1>
+                    <?php if(isset($_SESSION["user"])):?>
+                        <h2 class="text-light mt-5">Bonjour <?=$_SESSION["user"]["prenom"] . " " . $_SESSION["user"]["nom"] ?></h2>
+                    <?php endif; ?>
+                        <h1 class="text-light text-center mt-5 pt-5"><span class="fw-bolder">Bienvenue dans l'univers du temps raffiné</span><br><span class="fs-3">Explorez notre collection de montres exquises !</span></h1>
                     <!-- button -->
                     <div class="mt-5">
                         <a href="#articles" class="p-3 text-light">Découvrez notre collection</a>
