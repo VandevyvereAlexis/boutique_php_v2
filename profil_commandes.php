@@ -1,26 +1,33 @@
 <?php
-    // on demarre la sessions PHP
-    session_start();
-    include 'functions.php';    // inclusion fichier des fonctions --> appeler les fonctions concernées sur ce fichier. 
-    include 'head.php';         // inclusion du head.
+    session_start();                    // on demarre la sessions PHP "initialisation de la session, accès à la superglobal $_SESSION (tableau associatif)".
+
+    include 'functions.php';            // inclusion fichier des fonctions --> appeler les fonctions concernées sur ce fichier.
+    include 'head.php';                 // inclusion du head.
+
+    createCart();                       // initialiser le panier.
 ?>
+
+
+
 
 
 <!-- body 
 ======================= -->
-
 <body>
+
+
+
 
 
     <!-- header 
     ======================= -->
     <?php
-    include 'header.php';   // inclusion fichier header.php
+    include 'header.php';       // inclusion fichier header.php
     ?>
 
-    <?php 
-        //var_dump($_POST)
-    ?>
+
+
+
 
     <!-- main 
     ======================= -->

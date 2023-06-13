@@ -49,10 +49,10 @@
 
             <?php
                 echo'<div class="container m-3">
-                        <div class="row justify-content-center flex-nowrap grid gap-1 border-info-subtle rounded" id="details-produit_row">
+                        <div class="row justify-content-center flex-nowrap grid gap-1" id="details-produit_row">
                             <div class="col-md-6 text-white p-0">
 
-                                <div class="card text-light border-secondary rounded p-4" id="card-home_detail_produit">
+                                <div class="card text-light border-secondary rounded p-4" id="card_details_produit">
 
                                     <p class="mt-2 text-light">' . $article['prix'] . ' €</p>
                                     <h5 class="card-title text-light">' . $article['nom'] . '</h5>
@@ -68,18 +68,23 @@
 
                             </div>
 
-                            <div class="col-md-6 d-flex align-items-center border-secondary rounded" id="image_details_produit">
-                                <div class="container container-full-height d-flex justify-content-center align-items-center p-4">
-                                    <img src="./images/' . $article['image'] . '" class="card-img-top" alt="montre" id="image-card">
+                            <div class="col-md-6 d-flex align-items-center border border-secondary rounded" id="image_details_produit">
+                                <div class="container d-flex justify-content-center align-items-center p-4">
+                                    <img src="./images/' . $article['image'] . '"alt="montre">
                                 </div>
                             </div>
 
                         </div>
                     </div>';
             ?>
+            
         </section>
 
+
     </main>
+
+
+
 
 
     <!-- footer 
@@ -87,6 +92,9 @@
     <?php
     include 'footer.php' // inclusion fichier footer.php
     ?>
+
+
+
 
 
 </body>

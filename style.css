@@ -1,4 +1,4 @@
-/* ---------- reset ---------- */
+/* ---------------------- reset ------------------------- */
 body {
   width: 100%;
   padding: 0;
@@ -11,9 +11,9 @@ body {
 
 
 /* header.php  
-========================================================= */
+====================================================================================================================== */
 
-/* ---------- navbar ---------- */
+/* ---------------------- navbar ------------------------- */
 
 #navbarNavAltMarkup a {
   font-family: 'Gruppo', sans-serif;
@@ -29,12 +29,12 @@ body {
 
 
 /* index.php  
-========================================================= */
+====================================================================================================================== */
 
-/* ---------- accueil ---------- */
+/* ---------------------- haut de page ------------------------- */
 
-/* image de fond  */
-#image_fond {
+/* background haut de page */
+#section-accueil {
   background-image: linear-gradient(to right, #000000c0, #ffffff1f), url(./images/image_fond.jpg);
   width: 100%;
   height: 100vh;
@@ -45,15 +45,43 @@ body {
 }
 
 /* boutton */
-#image_fond a {
+#section-accueil a {
   text-decoration: none;
   border: 1px solid white;
 }
 
 /* boutton hover */
-#image_fond a:hover {
+#section-accueil a:hover {
   background-color: azure;
   color: black !important;
+}
+
+/* ---------------------- bas de page ------------------------- */
+
+/* background bas de page */
+#articles {
+  background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  font-family: 'Gruppo', sans-serif;
+}
+
+#articles h2 {
+  backdrop-filter: blur(7px);
+}
+
+/* image article */
+#articles img {
+  width: 5.5rem;
+}
+
+/* background card article */
+#card-articles {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.514);
 }
 
 
@@ -61,9 +89,7 @@ body {
 
 
 /* produit.php  
-========================================================= */
-
-/* ---------- main ---------- */
+====================================================================================================================== */
 
 /* background */
 #details-produit {
@@ -75,16 +101,19 @@ body {
   background-repeat: no-repeat;
 }
 
+/* background card */
 #image_details_produit {
   backdrop-filter: blur(7px);
   background-color: rgba(0, 0, 0, 0.514);
 }
 
+/* taille image */
 #image_details_produit img {
   width: 9rem;
 }
 
-#card-home_detail_produit {
+/* backgroung card details */
+#card_details_produit {
   backdrop-filter: blur(7px);
   background-color: rgba(0, 0, 0, 0.514);
 }
@@ -94,12 +123,10 @@ body {
 
 
 /* panier.php  
-========================================================= */
-
-/* ---------- main ---------- */
+====================================================================================================================== */
 
 /* background */
-#main_panier {
+#panier {
   background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
   width: 100%;
   background-size: cover;
@@ -107,28 +134,18 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   min-height: 100vh;
-}
-
-#main_panier h1 {
   font-family: 'Gruppo', sans-serif;
 }
 
-#container-panier {
+/* background article */
+#container_panier {
   backdrop-filter: blur(7px);
   background-color: rgba(0, 0, 0, 0.514);
-  font-family: 'Gruppo', sans-serif;
 }
 
-#container-panier img {
+/* image */ 
+#container_panier img {
   width: 3rem;
-}
-
-#total-panier {
-  font-family: 'Gruppo', sans-serif;
-}
-
-#container-panier {
-  border: 1px solid black;
 }
 
 
@@ -136,7 +153,9 @@ body {
 
 
 /* validation.php  
-========================================================= */
+====================================================================================================================== */
+
+/* background */
 #validation-panier {
   background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
   width: 100%;
@@ -145,14 +164,12 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   min-height: 100vh;
-}
-
-#validation-panier h1 {
   font-family: 'Gruppo', sans-serif;
 }
 
-#total-panier-validation {
-  font-family: 'Gruppo', sans-serif;
+/* image */
+#validation-panier img {
+  width: 3rem;
 }
 
 
@@ -160,9 +177,7 @@ body {
 
 
 /* footer.php  
-========================================================= */
-
-/* ---------- footer ---------- */
+====================================================================================================================== */
 
 /* paragraphe */
 footer p {
@@ -175,9 +190,7 @@ footer p {
 
 
 /* connexion.php  
-========================================================= */
-
-/* ---------- section connexion ---------- */
+====================================================================================================================== */
 
 #connexion {
   background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
@@ -204,9 +217,7 @@ footer p {
 
 
 /* inscription.php  
-========================================================= */
-
-/* ---------- section inscription ---------- */
+====================================================================================================================== */
 
 #inscription {
   background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
@@ -233,9 +244,7 @@ footer p {
 
 
 /* gammes.php  
-========================================================= */
-
-/* -------------- main ----------------- */
+====================================================================================================================== */
 
 /* background */
 #gammes {
@@ -254,18 +263,6 @@ footer p {
   background-color: rgba(0, 0, 0, 0.514);
 }
 
-/* ---------- section gammes ---------- */
-
-/* background */
-#articles_gamme {
-  background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-}
-
 /* header card */
 #card-gamme {
   backdrop-filter: blur(7px);
@@ -280,10 +277,9 @@ footer p {
 
 
 
-
-
 /* profil.php  
-========================================================= */
+====================================================================================================================== */
+
 #main-profil {
     /* background */
     background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
@@ -332,8 +328,10 @@ footer p {
 
 
 
+
 /* profil_modif_infos.php  
-========================================================= */
+====================================================================================================================== */
+
 #profil_modif_infos {
   /* background */
   background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
@@ -349,16 +347,14 @@ footer p {
 
 
 
-
-
 /* medias queries
-========================================================= */
+====================================================================================================================== */
 
 /* ---------------------- 991px ------------------------- */
 
 @media screen and (max-width : 991px) {
 
-  #card-home_detail_produit {
+  #card_detail_produit {
     width: 100%;
   }
 
@@ -390,27 +386,29 @@ footer p {
 }
 
 
-/* ---------- 767px ---------- */
+/* ---------------------- 767px ------------------------- */
 
 @media screen and (max-width : 767px) {
   #details-produit_row {
     flex-wrap: wrap !important;
   }
 
-  #container-panier img {
+  #container_panier img {
     padding-bottom: 10px;
   }
 
-  #container-panier h4 {
+  #container_panier h4 {
     padding-bottom: 8px;
   }
 
-  #container-panier .border-end {
+  #container_panier .border-end {
     border: hidden !important;
   }
 }
 
-/* ---------- 452 px ---------- */
+
+/* ---------------------- 452px ------------------------- */
+
 @media screen and (max-width : 452px) {
   #details-produit p {
     font-size: 11px;

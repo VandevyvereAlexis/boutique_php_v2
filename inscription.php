@@ -5,7 +5,7 @@
 
     if(isset($_SESSION["user"])) {      // permet d'éviter de retourner au formulaire d'inscription quand l'utilisateur est deja connecter à la place on renvoie sur profil.php
         header("Location: profil.php");
-        exit;
+    exit;
     }
 
     include 'functions.php';            // inclusion fichier des fonctions --> appeler les fonctions concernées sur ce fichier. 
@@ -71,7 +71,8 @@
                         <!-- mot de passe -->
                         <div class="form-group">
                             <label for="password">Mot de passe</label>
-                            <input type="password" class="form-control mb-3" name="password" id="password" placeholder="Entrez votre mot de passe">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Entrez votre mot de passe">
+                            <p><small class="text-light ps-3">8 et 15 caracteres. minimum 1 lettre, 1 chiffre et 1 caractère spécial</small></p>
                         </div>
 
                         <!-- button + lien -->
