@@ -44,13 +44,13 @@
                             <!-- nom -->
                             <div class="form-group">
                                 <label for="nom">Mot de passe</label>
-                                <input type="text" class="form-control mb-3" name="nom" id="nom" value="nom" placeholder="Entrez votre nouveau nom">
+                                <input type="text" class="form-control mb-3" name="nom" id="nom" value="<?= $_SESSION["user"]["nom"] ?>" placeholder="Entrez votre nouveau nom">
                             </div>
 
                             <!-- prenom -->
                             <div class="form-group">
                                 <label for="prenom">Prénom</label>
-                                <input type="text" class="form-control" name="prenom" id="prenom" value="prenom" placeholder="Entrez votre nouveau prenom">
+                                <input type="text" class="form-control" name="prenom" id="prenom" value="<?= $_SESSION["user"]["prenom"] ?>" placeholder="Entrez votre nouveau prenom">
                             </div>
 
                             <!-- boutton + lien -->

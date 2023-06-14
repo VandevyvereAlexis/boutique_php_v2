@@ -10,7 +10,6 @@
 
 <!-- body 
 ======================= -->
-
 <body>
 
 
@@ -51,7 +50,7 @@
                                 <button type="submit" class="btn btn-light mt-5 mb-4" name="connexion">Se connecter</button>
                                 <a href="./inscription.php" class="pt-5 mt-3 ms-3 text-white">S'inscrire</a>
                             </div>
-                            
+
                         </form>
 
                     </div>

@@ -5,7 +5,6 @@
 
     function getConnexion()                                                                                                                // connexion à la base de donnée
     {
-
         try                                                                                                                                 // try : je tente une connexion
         {                                                                                                                               
             $db = new PDO ('mysql:host=localhost;dbname=boutique_en_ligne;charset=utf8',                                                    //infos:sgbd,nombase,adresse(host)+ 
@@ -37,19 +36,19 @@
     {
         $db = getConnexion();
 
-        if (!checkEmptyFields())                                                                                                                                                                                          // On vérifie si le formulaire a été envoyé
+        if (!checkEmptyFields())                                                                                                                                                                        // On vérifie si le formulaire a été envoyé
         {                    
 
             // Le formulaire a été envoyer 
 
-            if (isset($_POST["nom"], $_POST["prenom"], $_POST["email"], $_POST["password"]) && ($_POST["nom"]) && ($_POST["prenom"]) && ($_POST["email"]) && ($_POST["password"]))          // on vérifie que tous les champs requis sont remplis
+            if (isset($_POST["nom"], $_POST["prenom"], $_POST["email"], $_POST["password"]) && ($_POST["nom"]) && ($_POST["prenom"]) && ($_POST["email"]) && ($_POST["password"]))                      // on vérifie que tous les champs requis sont remplis
             {        
 
                 // Le formulaire est complet
 
                 // On récupère les données en les protégeant
 
-                $nom = strip_tags($_POST["nom"]);                                                                                                                                                                   // "strip_tags" obligatoire, enleve les balises dans les champs de caractère protege contre faille xss
+                $nom = strip_tags($_POST["nom"]);                                                                                                                                                       // "strip_tags" obligatoire, enleve les balises dans les champs de caractère protege contre faille xss
                 $prenom = strip_tags($_POST["prenom"]);
                 $email = strip_tags($_POST["email"]);
                 $password = strip_tags($_POST["password"]);
@@ -78,7 +77,6 @@
                                 $query->bindValue(":nom", $nom, PDO::PARAM_STR);
                                 $query->bindValue(":prenom", $prenom, PDO::PARAM_STR);
                                 $query->bindValue(":email", $email, PDO::PARAM_STR);
-                                $query->bindValue(":email", $_POST["email"], PDO::PARAM_STR);
                                 $query->bindValue(":password", $password, PDO::PARAM_STR);
 
                                 $query->execute();
@@ -172,16 +170,29 @@
     {
         $inputsLenghtOk = true;
 
-        if (strlen($_POST['nom']) > 25 || strlen($_POST['nom']) < 3) {
-            $inputsLenghtOk = false;
+
+        if (isset($_POST["nom"])) 
+        {
+            if (strlen($_POST['nom']) > 25 || strlen($_POST['nom']) < 3) 
+            {
+                $inputsLenghtOk = false;
+            }
         }
 
-        if (strlen($_POST['prenom']) > 25 || strlen($_POST['prenom']) < 3) {
-            $inputsLenghtOk = false;
+        if (isset($_POST["prenom"])) 
+        {
+            if (strlen($_POST['prenom']) > 25 || strlen($_POST['prenom']) < 3) 
+            {
+                $inputsLenghtOk = false;
+            }
         }
 
-        if (strlen($_POST['email']) > 25 || strlen($_POST['email']) < 5) {
-            $inputsLenghtOk = false;
+        if (isset($_POST["email"])) 
+        {
+            if (strlen($_POST['email']) > 25 || strlen($_POST['email']) < 5) 
+            {
+                $inputsLenghtOk = false;
+            }
         }
 
         return $inputsLenghtOk;
@@ -302,7 +313,7 @@
 
         if (checkEmptyFields())                                                                                                                 // On vérifie si le formulaire a été envoyé
         {
-            if(isset($_POST["nom"], $_POST["prenom"]/*, $_POST["id"]*/) && ($_POST["nom"]) && ($_POST["prenom"]) /*&& ($_POST["id"])*/)                 // On vérifie que tous les champs requis sont remplis
+            if(isset($_POST["nom"], $_POST["prenom"]) && ($_POST["nom"]) && ($_POST["prenom"]))                 // On vérifie que tous les champs requis sont remplis
             {    
                 $nom = strip_tags($_POST["nom"]);
                 $prenom = strip_tags($_POST["prenom"]);
@@ -315,9 +326,16 @@
 
                     $query->bindValue(":nom", $nom, PDO::PARAM_STR);
                     $query->bindValue(":prenom", $prenom, PDO::PARAM_STR);
-                     $query->bindValue(":id", $id, PDO::PARAM_STR);
+                    $query->bindValue(":id", $_SESSION["user"]["id"], PDO::PARAM_STR);
 
                     $query->execute();
+
+                    $_SESSION["user"] = [                                                                                           // on stocke dans $_SESSION les informations de l'utilisateur
+                        "nom"       => $nom,
+                        "prenom"    => $prenom,
+                    ];//MODIFIER LES INFOS STOCKER 
+                    
+                    echo 'Modification réussie';
                 }
                 else {
                     die("Longueur caractères insuffisant");
@@ -390,7 +408,7 @@
     {
         $db = getConnexion();
 
-
+        
     }
 
 
@@ -400,13 +418,29 @@
 
 
 
-    /* commandes articles
+    /* liste commandes articles
     ====================================================================================================================== */
     function commandesArticles()
     {
         $db = getConnexion();
 
+        if (checkEmptyFields())                                                                                                                 // On vérifie si le formulaire a été envoyé
+        {
+            if(isset($_POST["email"]) && ($_POST["email"]))                                                                               // On vérifie que tous les champs requis sont remplis
+            {   
+                if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
+                {
 
+                    if (checkEmail())
+                    {
+                        
+                    }
+                }
+            }
+        }
+        else { 
+            die("le formulaire est incomplet");
+        }
     }
 
 
