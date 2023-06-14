@@ -1,8 +1,7 @@
 <?php
 
-    /* connexion à la base de données 
+    /* CONNEXION A LA BASE DE DONNEES                                                                           "TERMINE"
     ====================================================================================================================== */
-
     function getConnexion()                                                                                                                // connexion à la base de donnée
     {
         try                                                                                                                                 // try : je tente une connexion
@@ -21,6 +20,7 @@
 
         return $db;                                                                                                                         // je retourne la connexion stockée dans une variable
     }
+    /* =================================================================================================================== */
 
 
 
@@ -29,9 +29,10 @@
 
 
 
-    /* formulaire d'inscription 
+
+
+    /* FORMULAIRE D'INSCRIPTION                                                                                 "TERMINE"
     ====================================================================================================================== */
-
     function getInscription()
     {
         $db = getConnexion();
@@ -44,10 +45,7 @@
             if (isset($_POST["nom"], $_POST["prenom"], $_POST["email"], $_POST["password"]) && ($_POST["nom"]) && ($_POST["prenom"]) && ($_POST["email"]) && ($_POST["password"]))                      // on vérifie que tous les champs requis sont remplis
             {        
 
-                // Le formulaire est complet
-
                 // On récupère les données en les protégeant
-
                 $nom = strip_tags($_POST["nom"]);                                                                                                                                                       // "strip_tags" obligatoire, enleve les balises dans les champs de caractère protege contre faille xss
                 $prenom = strip_tags($_POST["prenom"]);
                 $email = strip_tags($_POST["email"]);
@@ -56,23 +54,23 @@
                 if (checkCaracteres())
                 {
 
-                    if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
+                    if (checkEmail($email))
                     {
 
-                        if (checkEmail())
+                        if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
                         {
 
-                            if (checkPassword($_POST["password"]))                                                                                                                                                  // je déclare ma fonction checkPassword "regex" et je met le reste du code à l'intérieur avec else die pour afficher un message 
+                            if (checkPassword($_POST["password"]))                                                                                                                                      // je déclare ma fonction checkPassword "regex" et je met le reste du code à l'intérieur avec else die pour afficher un message 
                             {
 
-                                $password = password_hash($_POST["password"], PASSWORD_DEFAULT);                                                                                                                    // on va hasher le mot de passe
+                                $password = password_hash($_POST["password"], PASSWORD_DEFAULT);                                                                                                        // on va hasher le mot de passe
                                 // die($password);
 
                                 // ajouter ici tous les contrôles souhaités
 
                                 $sql = "INSERT INTO `clients`(`nom`, `prenom`, `email`, `password`) VALUES (:nom, :prenom, :email, :password)";
 
-                                $query = $db->prepare($sql);                                                                                                                                                        // on récupère l'id du nouvel utilisateur
+                                $query = $db->prepare($sql);                                                                                                                                            // on récupère l'id du nouvel utilisateur
 
                                 $query->bindValue(":nom", $nom, PDO::PARAM_STR);
                                 $query->bindValue(":prenom", $prenom, PDO::PARAM_STR);
@@ -81,32 +79,35 @@
 
                                 $query->execute();
 
+                                echo "<script>alert('Votre compte a bien été créer.')</script>";
+
                             }
                             else {
-                                die("Sécurité du mot de passe insuffisantes");
+                                echo "<script>alert('Sécurité du mot de passe insuffisantes.')</script>";
                             }  
                         
                         }
                         else {
-                            die ("Ce compte est déjà existant");
+                            echo "<script>alert('L'adresse email est incorrecte.')</script>";
                         }
 
                     } 
                     else {
-                        die("L'adresse email est incorrecte");
+                        echo "<script>alert('Ce compte est déjà existant.')</script>";
                     }
 
                 } 
                 else {
-                    die("Longueur caractères insuffisant");
+                    echo "<script>alert('Longueur des caractères insuffisant.')</script>";
                 }
 
             } 
             else { 
-                die("le formulaire est incomplet");
+                echo "<script>alert('Le formulaire est incomplet.')</script>";
             }
         }
     }
+    /* =================================================================================================================== */
 
 
 
@@ -115,9 +116,10 @@
 
 
 
-    /* veriification qu'aucun input ne soit vide
+
+
+    /* VERIFICATION QU'AUCUN INPUT NE SOIT VIDE                                                              "TERMINE"
     ====================================================================================================================== */
-
     function checkEmptyFields()
     {
         foreach ($_POST as $field) {
@@ -127,6 +129,7 @@
         }
         return false;
     }
+    /* =================================================================================================================== */
 
 
 
@@ -135,26 +138,24 @@
 
 
 
-    /* Vérification que le compte ne soit pas déjà existant
+
+
+    /* VERIFICATION QUE LE COMPTE NE SOIT PAS DEJA EXISTANT                                                    "TERMINE"
     ====================================================================================================================== */
-
-    function checkEmail()
+    function checkEmail($email)
     {
         $db = getConnexion();
 
         $query = $db->prepare("SELECT * FROM clients WHERE email = ?");
-        $user = $query->execute([$_POST['email']]);
+        $user = $query->execute([$email]);
 
-        $user = $query->fetch();
-
-        if ($user) 
-        {
+        if ($user) {
             return true;
-        } 
-        else {
+        } else {
             return false;
         }
     }
+    /* =================================================================================================================== */
 
 
 
@@ -163,9 +164,10 @@
 
 
 
-    /* Check longueur caractères
+
+
+    /* CHECK LONGUEUR DES CARACTERES                                                                               "TERMINE"
     ====================================================================================================================== */
-
     function checkCaracteres()
     {
         $inputsLenghtOk = true;
@@ -197,6 +199,7 @@
 
         return $inputsLenghtOk;
     }
+    /* =================================================================================================================== */
 
 
 
@@ -205,15 +208,17 @@
 
 
 
-    /* regex pour formulaire d'inscription 
+
+
+    /* REGEX POUR PASSWORD                                                                    "TERMINE"
     ====================================================================================================================== */
-
     function checkPassword($password)    
     { 
         $regex = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*?/&])(?=\S+$).{8,15}$^";                                                 // minimum 8 caractères et maximum 15, minimum 1 lettre, 1 chiffre et 1 caractère spécial
 
         return preg_match($regex, $password);
     }
+    /* =================================================================================================================== */
 
 
 
@@ -222,9 +227,10 @@
 
 
 
-    /* formulaire de connexion 
+
+
+    /* FORMUALIRE CONNEXION                                                                                 "TERMINE"
     ====================================================================================================================== */
-
     function getFormConnex()
     {
         $db = getConnexion();
@@ -279,6 +285,7 @@
             die("le formulaire est incomplet");
         }
     }
+    /* =================================================================================================================== */
 
 
 
@@ -287,15 +294,15 @@
 
 
 
-    /* formulaire de création adresse  
+
+
+    /* FORMULAIRE CREATION ADRESSE   
     ====================================================================================================================== */
-
     function crationAdresse()
     {
         $db = getConnexion();
-
-
     }
+    /* =================================================================================================================== */
 
 
 
@@ -304,9 +311,10 @@
 
 
 
-    /* formulaire de modification informations  
+
+
+    /* FORMULAIRE MODIFICATION INFORMATION                                                                  "TERMINE"
     ====================================================================================================================== */
-
     function modifInfos()
     {
         $db = getConnexion();
@@ -333,9 +341,9 @@
                     $_SESSION["user"] = [                                                                                           // on stocke dans $_SESSION les informations de l'utilisateur
                         "nom"       => $nom,
                         "prenom"    => $prenom,
-                    ];//MODIFIER LES INFOS STOCKER 
+                    ];
                     
-                    echo 'Modification réussie';
+                    echo "<script>alert('Les informations ont été modifiées avec succès.');</script>";
                 }
                 else {
                     die("Longueur caractères insuffisant");
@@ -349,6 +357,7 @@
             die("le formulaire est incomplet");
         }
     }
+    /* =================================================================================================================== */
 
 
 
@@ -357,9 +366,10 @@
 
 
 
-    /* formulaire de modification mot de passe  
+
+
+    /* FORMUALIRE MODIFICATION MOT DE PASSE                                                                  "EN COURS"
     ====================================================================================================================== */
-
     function modifPassword()
     {
         $db = getConnexion();
@@ -379,7 +389,7 @@
                     $query = $db->prepare($sql);
 
                     $query->bindValue(":password", $password, PDO::PARAM_STR);
-                     $query->bindValue(":id", $id, PDO::PARAM_STR);
+                    //$query->bindValue(":id", $id, PDO::PARAM_STR);
 
                     $query->execute();
                 }
@@ -395,6 +405,7 @@
             die("le formulaire est incomplet");
         }
     }
+    /* =================================================================================================================== */
 
 
 
@@ -402,14 +413,16 @@
 
 
 
-    /* formulaire de modification adresse  
+
+
+
+    /* FORMULAIRE MODIFICATION ADRESSE  
     ====================================================================================================================== */
     function modifAdresse()
     {
-        $db = getConnexion();
-
-        
+        $db = getConnexion(); 
     }
+    /* =================================================================================================================== */
 
 
 
@@ -418,30 +431,15 @@
 
 
 
-    /* liste commandes articles
+
+
+    /* LISTE DES COMMANDES
     ====================================================================================================================== */
     function commandesArticles()
     {
         $db = getConnexion();
-
-        if (checkEmptyFields())                                                                                                                 // On vérifie si le formulaire a été envoyé
-        {
-            if(isset($_POST["email"]) && ($_POST["email"]))                                                                               // On vérifie que tous les champs requis sont remplis
-            {   
-                if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
-                {
-
-                    if (checkEmail())
-                    {
-                        
-                    }
-                }
-            }
-        }
-        else { 
-            die("le formulaire est incomplet");
-        }
     }
+    /* =================================================================================================================== */
 
 
 
@@ -450,17 +448,19 @@
 
 
 
-    /* récupération liste articles 
+
+
+    /* RECUPERATION LISTE DES ARTICLES                                                                              "TERMINE"
     ====================================================================================================================== */
-
-    function getArticles()                                  // récupérer la liste des articles
+    function getArticles()                                                                                      // récupérer la liste des articles
     {
-        $db = getConnexion();                               // je me connecte à la base de données
+        $db = getConnexion();                                                                                   // je me connecte à la base de données
 
-        $results = $db->query('SELECT * FROM articles');    // j'exécute une requête qui va récupérer tous les articles
+        $results = $db->query('SELECT * FROM articles');                                                        // j'exécute une requête qui va récupérer tous les articles
 
-        return $results->fetchAll();                        // je récupère les résultats et je les renvoie grâce à return
+        return $results->fetchAll();                                                                            // je récupère les résultats et je les renvoie grâce à return
     }
+    /* =================================================================================================================== */
 
 
 
@@ -469,17 +469,19 @@
 
 
 
-    /* récupération liste des gammes 
+
+
+    /* RECUPERATION LISTE DES GAMMES                                                                           "TERMINE"
     ====================================================================================================================== */
-
-    function getGamme()                                     // récupérer la liste des gammes
+    function getGamme()                                                                                         // récupérer la liste des gammes
     {
-        $db = getConnexion();                               // je me connecte à la base de données
+        $db = getConnexion();                                                                                   // je me connecte à la base de données
 
-        $results = $db->query('SELECT * FROM gammes');      // j'exécute une requête qui va récupérer tous les articles
+        $results = $db->query('SELECT * FROM gammes');                                                          // j'exécute une requête qui va récupérer tous les articles
 
-        return $results->fetchAll();                        // je récupère les résultats et je les renvoie grâce à return
+        return $results->fetchAll();                                                                            // je récupère les résultats et je les renvoie grâce à return
     }
+    /* =================================================================================================================== */
 
 
 
@@ -488,19 +490,21 @@
 
 
 
-    /* récupération liste articles pour une gamme 
+
+
+    /* RECUPERATION LISTE ARTICLES POUR UNE GAMME                                                            "TERMINE"
     ====================================================================================================================== */
-
     function getArticlesBygamme($id) 
     {
-        $db = getConnexion();                                                   // je me connecte à la base de données
+        $db = getConnexion();                                                                                   // je me connecte à la base de données
 
-        $query = $db->prepare('SELECT * FROM articles WHERE id_gamme = ?');     // requête pour récupérer un article par son id_gamme
+        $query = $db->prepare('SELECT * FROM articles WHERE id_gamme = ?');                                     // requête pour récupérer un article par son id_gamme
 
-        $query->execute ([$id]);                                                // exution avec le bon paramèter
+        $query->execute ([$id]);                                                                                // exution avec le bon paramèter
 
-        return $query->fetchAll();                                              // je récupère l'article sous forme de tableau associatif
+        return $query->fetchAll();                                                                              // je récupère l'article sous forme de tableau associatif
     }
+    /* =================================================================================================================== */
 
 
 
@@ -509,21 +513,23 @@
 
 
 
-    /* récupération d'article par id 
+
+
+    /* RECUPERATION D'ARTICLE PAR ID                                                                     "TERMINE"
     ====================================================================================================================== */
-
     function getArticleFromId($id) 
     {
-        $db = getConnexion();                                                                   // je me connecte à la base de données
+        $db = getConnexion();                                                                                   // je me connecte à la base de données
 
         // jamais de variable php directement dans uen requete "risque d'injection SQL"
 
-        $query = $db->prepare('SELECT * FROM Articles WHERE id = ?');                           // je prepare ma requête
+        $query = $db->prepare('SELECT * FROM Articles WHERE id = ?');                                           // je prepare ma requête
 
-        $query->execute([$id]);                                                                 // je l'exécute avec le bon paramètre
+        $query->execute([$id]);                                                                                 // je l'exécute avec le bon paramètre
 
-        return $query->fetch();                                                                 // je retourne l'article sous forme de tableau associatif
+        return $query->fetch();                                                                                 // je retourne l'article sous forme de tableau associatif
     }
+    /* =================================================================================================================== */
 
 
 
@@ -532,16 +538,18 @@
 
 
 
-    /* initialisation panier 
+
+
+    /* INITIALISATION PANIER                                                                                    "TERMINE"
     ====================================================================================================================== */
-
     function createCart() 
     {
-        if (isset($_SESSION['panier']) == false)                // si mon panier n'existe pas encore 
+        if (isset($_SESSION['panier']) == false)                                                                // si mon panier n'existe pas encore 
         {                                                       
-            $_SESSION['panier'] = [];                           // je l'initialise
+            $_SESSION['panier'] = [];                                                                           // je l'initialise
         }
     }
+    /* =================================================================================================================== */
 
 
 
@@ -550,12 +558,13 @@
 
 
 
-    /* fonction quantite article  
+
+
+    /* FONCTION QUANTITEE ARTICLE                                                                                "TERMINE"
     ====================================================================================================================== */
-
     function addToCart($article) 
     {
-        $article['quantite'] = 1;                                                                                   // on attribut une quandtité de 1 ( par defaut ) à l'article
+        $article['quantite'] = 1;                                                                               // on attribut une quandtité de 1 ( par defaut ) à l'article
         
         // je verifie si l'article n'est pas déja présent
 
@@ -570,15 +579,16 @@
         for ($i = 0; $i < count($_SESSION['panier']); $i++) 
         {
 
-            if ($_SESSION['panier'][$i]['id'] == $article['id'])                                                    // si present = quantite +1
+            if ($_SESSION['panier'][$i]['id'] == $article['id'])                                                // si present = quantite +1
             {
                 $_SESSION['panier'][$i]['quantite']++;
-                return;                                                                                             // permet de sortir de la fonction
+                return;                                                                                         // permet de sortir de la fonction
             }
         }
 
-        array_push($_SESSION['panier'], $article);                                                                  // si pas present => ajout classqiue via array_push
+        array_push($_SESSION['panier'], $article);                                                              // si pas present => ajout classqiue via array_push
     }
+    /* =================================================================================================================== */
 
 
 
@@ -587,19 +597,21 @@
 
 
 
-    /* fonction total panier 
+
+
+    /* FONCTION TOTAL PANIER                                                                                    "TERMINE"
     ====================================================================================================================== */
-
     function totalPanier() 
     {
         $totalPanier = 0; 
 
         foreach ($_SESSION['panier'] as $article) 
         {
-            $totalPanier += $article['quantite'] * $article['prix'];                                                // Quantiter  X  prix 
+            $totalPanier += $article['quantite'] * $article['prix'];                                            // Quantiter  X  prix 
         }
         return $totalPanier;
     }
+    /* =================================================================================================================== */
 
 
 
@@ -608,25 +620,25 @@
 
 
 
-    /* modifier quantite de l'article dans le panier 
+    /* modifier quantite de l'article dans le panier                                                            "TERMINE"
     ====================================================================================================================== */
-
     function updateQuantity() 
     {
-        for ($i = 0; $i < count($_SESSION['panier']); $i++)                                                         // je boucle sur le panier => je cherche l'article à modifier 
+        for ($i = 0; $i < count($_SESSION['panier']); $i++)                                                     // je boucle sur le panier => je cherche l'article à modifier 
         {
 
-            if ($_SESSION['panier'][$i]['id'] == $_POST['modifiedArticleId'])                                       // des que je trouyve mon article 
+            if ($_SESSION['panier'][$i]['id'] == $_POST['modifiedArticleId'])                                   // des que je trouyve mon article 
             {
 
-                $_SESSION['panier'][$i]['quantite'] = $_POST['newQuantity'];                                        // je remplace son ancienne quantite par la nouvelle 
+                $_SESSION['panier'][$i]['quantite'] = $_POST['newQuantity'];                                    // je remplace son ancienne quantite par la nouvelle 
 
-                echo "<script> alert(\"Quantité modifiée !\");</script>";                                           // j'affiche un message de succès dans une petite fenêtre via JavaScript 
+                echo "<script> alert(\"Quantité modifiée !\");</script>";                                       // j'affiche un message de succès dans une petite fenêtre via JavaScript 
 
-                return;                                                                                             // Je sort de la fonction pour eviter de boucler sur les articles suivants
+                return;                                                                                         // Je sort de la fonction pour eviter de boucler sur les articles suivants
             }
         }
     }
+    /* =================================================================================================================== */
 
 
 
@@ -635,9 +647,8 @@
 
 
 
-    /* supression d'articles dans le paneir
+    /* supression d'articles dans le panier                                                                     "TERMINE"
     ====================================================================================================================== */
-
     function deletedArticle($id)
     {
         for ($i = 0; $i < count($_SESSION['panier']); $i++)
@@ -647,6 +658,7 @@
             array_splice($_SESSION['panier'], $i, 1);
         }
     }
+    /* =================================================================================================================== */
 
 
 
@@ -655,13 +667,13 @@
 
 
 
-    /* vider panier 
+    /* vider panier                                                                                             "TERMINE"
     ====================================================================================================================== */
-
     function viderPanier() 
     {
         $_SESSION['panier'] = array();
     }
+    /* =================================================================================================================== */
 
 
 
@@ -670,9 +682,8 @@
 
 
 
-    /* Calculer les frais de port
+    /* Calculer les frais de port                                                                               "TERMINE"
     ====================================================================================================================== */
-
     function frais() 
     {
         $totalFrais = 0; 
@@ -680,9 +691,10 @@
 
         foreach ($_SESSION['panier'] as $article) 
         {
-            $totalFrais += $article['quantite'] * $fraisParArticle;                                                 // Quantiter x prix 
+            $totalFrais += $article['quantite'] * $fraisParArticle;                                             // Quantiter x prix 
         }
 
         return $totalFrais;
     }
+    /* =================================================================================================================== */
 ?>
