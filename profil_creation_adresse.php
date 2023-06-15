@@ -34,11 +34,11 @@ createCart();                       // initialiser le panier.
     ======================= -->
     <main class="bg-dark d-flex align-items-center" id="profil_modif_adresse">
         <div class="container">
-            <div class="row justify-content-center grid gap-5 flex-nowrap rounded border border-secondary p-5" id="row_connexion">
+            <div class="row justify-content-center grid gap-5 flex-nowrap rounded border border-secondary p-5" id="row_profil_modif_adresse">
 
                 <!-- Formulaire connexion -->
-                <div class="col-md-6 bg-transparent text-white rounded border border-secondary" id="col_connexion">
-                    <h2 class="mt-3 mb-3 text-center">Modifiication adresse</h2>
+                <div class="col-md-6 bg-transparent text-white rounded border border-secondary" id="col_profil_modif_adresse">
+                    <h2 class="mt-3 mb-3 text-center">Creation adresse</h2>
 
                     <form method="post" action="profil.php">
 
@@ -61,7 +61,7 @@ createCart();                       // initialiser le panier.
                             <!-- s'inscrire -->
                             <button type="submit" class="btn btn-primary">Créer une adresse</button>
                             <!-- lien page connexion -->
-                            <a href="./creation_adresse.php" class="pt-5 mt-3 ms-3 text-white">Modification adresse</a>
+                            <a href="./profil_modif_adresse.php" class="pt-5 mt-3 ms-3 text-white">Modification adresse</a>
                         </div>
 
                     </form>

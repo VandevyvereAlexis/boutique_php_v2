@@ -2,21 +2,23 @@
 ------------------------------------------------------------------------------------------------------------------- -->
 <!--
 
-    64.         CONNEXION A LA BASE DE DONNEES                              "TERMINE"
+    64.         CONNEXION A LA BASE DE DONNEES                                                          "TERMINE"
 
-    95.         FORMULAIRE D'INSCRIPTION                                    "TERMINE"
+    95.         FORMULAIRE D'INSCRIPTION (Nom + prenom + mail)                                          "TERMINE"
 
-    173.        VERIFICATION QU'AUCUN INPUT NE SOIT VIDE                    "TERMINE"
+    95.         FORMULAIRE D'INSCRIPTION (Nom + prenom + email + ville + code postal + adresse)         "TERMINE"
 
-    195.        VERIFICATION QUE LE COMPTE NE SOIT PAS DEJA EXISTANT        "TERMINE"
+    173.        VERIFICATION QU'AUCUN INPUT NE SOIT VIDE                                                "TERMINE"
 
-    217.        CHECK LONGUEUR DES CARACTERES                               "TERMINE"
+    195.        VERIFICATION QUE LE COMPTE NE SOIT PAS DEJA EXISTANT                                    "TERMINE"
 
-    261.        REGEX POUR PASSWORD                                         "TERMINE"
+    217.        CHECK LONGUEUR DES CARACTERES                                                           "TERMINE"
 
-    280.        FORMUALIRE CONNEXION                                        "TERMINE"
+    261.        REGEX POUR PASSWORD                                                                     "TERMINE"
 
-    349.        FORMULAIRE MODIFICATION INFORMATION                         "TERMINE"
+    280.        FORMUALIRE CONNEXION                                                                    "TERMINE"
+
+    349.        FORMULAIRE MODIFICATION INFORMATION                                                     "TERMINE"
 
     402.        FORMUALIRE MODIFICATION MOT DE PASSE                                    "EN COURS"
 
@@ -82,7 +84,6 @@
         return $db;                                                                                                                                         // je retourne la connexion stockée dans une variable
     }
     /* ------------------------------------------------------------------------------------------------------------------- */
-    
 
 
 
@@ -92,9 +93,10 @@
 
 
 
-    /* FORMULAIRE D'INSCRIPTION                                                                                     "TERMINE"
+
+    /* FORMULAIRE D'INSCRIPTION (Nom + prenom + mail)                                                               "TERMINE"
     ====================================================================================================================== */
-    function getInscription()
+    /*function getInscription()
     {
         $db = getConnexion();
 
@@ -156,6 +158,102 @@
 
         }
         else { 
+            echo "<script>alert('Le formulaire est incomplet. Veuillez remplir tous les champs obligatoires.')</script>";
+        }
+    }*/
+    /* ------------------------------------------------------------------------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+    /* FORMULAIRE D'INSCRIPTION (Nom + prenom + email + ville + code postal + adresse)                              "TERMINE"
+    ====================================================================================================================== */
+    function getInscription()
+    {
+        $db = getConnexion();
+
+        if (!checkEmptyFields()) 
+        {
+
+            // On récupère les données en les protégeant
+            $nom = strip_tags($_POST["nom"]);
+            $prenom = strip_tags($_POST["prenom"]);
+            $email = strip_tags($_POST["email"]);
+            $password = strip_tags($_POST["password"]);
+            $adresse = strip_tags($_POST["adresse"]);
+            $codePostal = strip_tags($_POST["code_postal"]);
+            $ville = strip_tags($_POST["ville"]);
+
+            if (checkCaracteres()) 
+            {
+
+                if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) 
+                {
+
+                    if (!checkEmail($email)) 
+                    {
+
+                        if (checkPassword($_POST["password"])) 
+                        {
+
+                            $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
+                            $sql = "INSERT INTO `clients`(`nom`, `prenom`, `email`, `password`) VALUES (:nom, :prenom, :email, :password)";
+
+                            $query = $db->prepare($sql);
+                            $query->bindValue(":nom", $nom, PDO::PARAM_STR);
+                            $query->bindValue(":prenom", $prenom, PDO::PARAM_STR);
+                            $query->bindValue(":email", $email, PDO::PARAM_STR);
+                            $query->bindValue(":password", $password, PDO::PARAM_STR);
+
+                            if ($query->execute()) 
+                            {
+
+                                $id_client = $db->lastInsertId();
+
+                                $sql = "INSERT INTO `adresses`(`adresse`, `code_postal`, `ville`, `id_client`) VALUES (:adresse, :code_postal, :ville, :id_client)";
+
+                                $query = $db->prepare($sql);
+                                $query->bindValue(":adresse", $adresse, PDO::PARAM_STR);
+                                $query->bindValue(":code_postal", $codePostal, PDO::PARAM_STR);
+                                $query->bindValue(":ville", $ville, PDO::PARAM_STR);
+                                $query->bindValue(":id_client", $id_client, PDO::PARAM_INT);
+
+                                if ($query->execute()) 
+                                {
+                                    echo "<script>alert('Votre compte a bien été créé.')</script>";
+                                }
+
+                            }
+
+                        } 
+                        else {
+                            echo "<script>alert('Sécurité du mot de passe insuffisante. Veuillez choisir un mot de passe plus fort.')</script>";
+                        }
+
+                    } 
+                    else {
+                        echo "<script>alert('Ce compte est déjà existant. Veuillez utiliser une adresse email différente.')</script>";
+                    }
+
+                } 
+                else {
+                    echo "<script>alert('L\'adresse email est incorrecte. Veuillez entrer une adresse email valide.')</script>";
+                }
+
+            } 
+            else {
+                echo "<script>alert('Longueur des caractères insuffisante. Veuillez entrer des valeurs avec une longueur suffisante.')</script>";
+            }
+
+        } 
+        else {
             echo "<script>alert('Le formulaire est incomplet. Veuillez remplir tous les champs obligatoires.')</script>";
         }
     }
@@ -244,6 +342,28 @@
                 $inputsLenghtOk = false;
             }
         }
+
+        if (isset($_POST["adresse"])) 
+        {
+            if (strlen($_POST['adresse']) > 40 || strlen($_POST['adresse']) < 5) {
+                $inputsLenghtOk = false;
+            }
+        }
+    
+        if (isset($_POST["code_postal"])) 
+        {
+            if (strlen($_POST['code_postal']) !== 5) {
+                $inputsLenghtOk = false;
+            }
+        }
+    
+        if (isset($_POST["ville"])) 
+        {
+            if (strlen($_POST['ville']) > 25 || strlen($_POST['ville']) < 3) {
+                $inputsLenghtOk = false;
+            }
+        }
+    
 
         return $inputsLenghtOk;
     }
@@ -717,15 +837,86 @@
 
     /* FORMULAIRE CREATION ADRESSE   
     ====================================================================================================================== */
-    function crationAdresse()
+    /*function creationAdresse()
     {
         $db = getConnexion();
-    }
+
+        if (!checkEmptyFields())                                                                                                                            // On vérifie si le formulaire a été envoyé
+        { 
+
+            $adresse = strip_tags($_POST["adresse"]);
+            $code_postal = strip_tags($_POST["code_postal"]);
+            $ville = strip_tags($_POST["ville"]);
+            $id_client = $_SESSION["user"]["id"];                                                                                                           // Récupère l'ID du client connecté
+
+            if (checkCaracteres())
+            {
+                $sql = "INSERT INTO `adresses`(`adresse`, `code_postal`, `ville`, `id_client`) VALUES (:adresse, :code_postal, :ville, :id_client)";
+
+                $query = $db->prepare($sql);
+
+                $query->bindValue(":adresse", $adresse, PDO::PARAM_STR);
+                $query->bindValue(":code_postal", $code_postal, PDO::PARAM_STR);
+                $query->bindValue(":ville", $ville, PDO::PARAM_STR);
+                $query->bindValue(":id_client", $id_client, PDO::PARAM_INT);                                                                                // Lie l'adresse à l'ID du client
+
+                if ($query->execute()) 
+                {
+                    echo "<script>alert('L'adresse a été crée avec succès.');</script>";
+                }
+
+            }
+            else {
+                echo "<script>alert('Longueur des caractères insuffisante. Veuillez entrer des valeurs avec une longueur suffisante.')</script>";
+            }
+
+        }
+        else { 
+            echo "<script>alert('Le formulaire est incomplet. Veuillez remplir tous les champs obligatoires.')</script>";
+        }
+    }*/
     /* ------------------------------------------------------------------------------------------------------------------- */
 
 
 
-
+    function modifierAdresse()
+    {
+        $db = getConnexion();
+    
+        if (!checkEmptyFields()) 
+        {
+            // On récupère les données en les protégeant
+            $adresse = strip_tags($_POST["adresse"]);
+            $codePostal = strip_tags($_POST["code_postal"]);
+            $ville = strip_tags($_POST["ville"]);
+            $idClient = $_SESSION["user"]["id"];
+    
+            if (checkCaracteres()) 
+            {
+                $sql = "UPDATE `adresses` SET `adresse` = :adresse, `code_postal` = :code_postal, `ville` = :ville WHERE `id_client` = :id_client";
+    
+                $query = $db->prepare($sql);
+                $query->bindValue(":adresse", $adresse, PDO::PARAM_STR);
+                $query->bindValue(":code_postal", $codePostal, PDO::PARAM_STR);
+                $query->bindValue(":ville", $ville, PDO::PARAM_STR);
+                $query->bindValue(":id_client", $idClient, PDO::PARAM_INT);
+    
+                if ($query->execute()) 
+                {
+                    echo "<script>alert('Adresse modifiée avec succès.')</script>";
+                }
+                else {
+                    echo "<script>alert('Une erreur est survenue lors de la modification de l'adresse. Veuillez réessayer.')</script>";
+                }
+            } 
+            else {
+                echo "<script>alert('Longueur des caractères insuffisante. Veuillez entrer des valeurs avec une longueur suffisante.')</script>";
+            }
+        } 
+        else {
+            echo "<script>alert('Le formulaire est incomplet. Veuillez remplir tous les champs obligatoires.')</script>";
+        }
+    }
 
 
 
@@ -733,12 +924,44 @@
 
     /* FORMULAIRE MODIFICATION ADRESSE  
     ====================================================================================================================== */
-    function modifAdresse()
+    /*function modificationAdresse()
     {
-        $db = getConnexion(); 
-    }
-    /* ------------------------------------------------------------------------------------------------------------------- */
+        $db = getConnexion();
 
+        if (!checkEmptyFields()) 
+        {
+            $id_client = $_SESSION['user']['id'];
+            $adresse = strip_tags($_POST["adresse"]);
+            $code_postal = strip_tags($_POST["code_postal"]);
+            $ville = strip_tags($_POST["ville"]);
+
+            if (checkCaracteres()) 
+            {
+                $sql = "UPDATE `adresses` SET `adresse` = :adresse, `code_postal` = :code_postal, `ville` = :ville WHERE id_client = :id_client";
+
+                $query = $db->prepare($sql);
+
+                $query->bindValue(":adresse", $adresse, PDO::PARAM_STR);
+                $query->bindValue(":code_postal", $code_postal, PDO::PARAM_STR);
+                $query->bindValue(":ville", $ville, PDO::PARAM_STR);
+                $query->bindValue(":id_client", $id_client, PDO::PARAM_INT);
+
+                $query->fetch();
+                
+                if ($query->execute()) 
+                {
+                echo "<script>alert('L'adresse a été modifiée avec succès.');</script>";
+                }
+
+            } else {
+                echo "<script>alert('Longueur des caractères insuffisante. Veuillez entrer des valeurs avec une longueur suffisante.')</script>";
+            }
+
+        } else {
+            echo "<script>alert('Le formulaire est incomplet. Veuillez remplir tous les champs obligatoires.')</script>";
+        }
+    }*/ 
+    /* ------------------------------------------------------------------------------------------------------------------- */
 
 
 

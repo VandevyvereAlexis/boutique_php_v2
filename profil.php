@@ -11,6 +11,18 @@
     if (isset($_POST["new_password"])) {                 // function modification password
         modifPassword();
     }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        modifierAdresse();
+    }
+
+    /*if (isset($_POST["adresse"])) { 
+        creationAdresse();
+    }
+
+    if (isset($_POST["modifier_adresse"])) {
+        modificationAdresse();
+    }*/
 ?>
 
 
