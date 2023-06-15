@@ -13,6 +13,7 @@ createCart();                       // initialiser le panier.
 
 <!-- body 
 ======================= -->
+
 <body>
 
 
@@ -43,24 +44,24 @@ createCart();                       // initialiser le panier.
 
                         <div class="form-group">
                             <label for="adresse">Adresse</label>
-                            <input type="text" class="form-control" id="adresse" name="adresse" value="<?= $_SESSION["user"]["adresse"] ?>" placeholder="Entrez votre adresse">
+                            <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Entrez votre adresse">
                         </div>
 
                         <div class="form-group">
                             <label for="ville">Ville</label>
-                            <input type="text" class="form-control" id="ville" name="ville" value="<?= $_SESSION["user"]["ville"] ?>" placeholder="Entrez votre ville">
+                            <input type="text" class="form-control" id="ville" name="ville" placeholder="Entrez votre ville">
                         </div>
 
                         <div class="form-group">
                             <label for="code_postal">Code Postal</label>
-                            <input type="text" class="form-control" id="code_postal" name="code_postal" value="<?= $_SESSION["user"]["code_postal"] ?>" placeholder="Entrez votre code postal">
+                            <input type="text" class="form-control" id="code_postal" name="code_postal" placeholder="Entrez votre code postal">
                         </div>
 
                         <div class="d-flex">
                             <!-- s'inscrire -->
-                            <button type="submit" class="btn btn-primary">Modifier l'adresse</button>
+                            <button type="submit" class="btn btn-primary">Créer une adresse</button>
                             <!-- lien page connexion -->
-                            <a href="./creation_adresse.php" class="pt-5 mt-3 ms-3 text-white">Créer votre adresse</a>
+                            <a href="./creation_adresse.php" class="pt-5 mt-3 ms-3 text-white">Modification adresse</a>
                         </div>
 
                     </form>

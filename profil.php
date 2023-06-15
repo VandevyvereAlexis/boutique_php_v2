@@ -4,11 +4,11 @@
     include 'functions.php';                    // inclusion fichier des fonctions --> appeler les fonctions concernées sur ce fichier.
     include 'head.php';                         // inclusion du head.
 
-    if (isset($_POST['nom'])) {                 // function modification informations
+    if (isset($_POST["nom"])) {                 // function modification informations
         modifInfos();
     }
 
-    if (isset($_POST['password'])) {            // function modification password
+    if (isset($_POST["new_password"])) {                 // function modification password
         modifPassword();
     }
 ?>

@@ -43,8 +43,13 @@
                         <form method="post" action="./profil.php">
 
                             <div class="form-group">
-                                <label for="password">Mot de passe</label>
-                                <input type="password" class="form-control" name="password" id="password" value="password" placeholder="Entrez votre nouveau prenom">
+                                <label for="old_password"><small class="ps-3">Mot de passe actuel</small></label>
+                                <input type="password" class="form-control mb-4" name="old_password" id="old_password" placeholder="Entrez votre mot de passe actuel">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="new_password"><small class="ps-3">Nouveau mot de passe</small></label>
+                                <input type="password" class="form-control" name="new_password" id="new_password" placeholder="Entrez votre nouveau mot de passe">   <!-- pas de value car c'est un mot de passe -->
                                 <p><small class="text-light ps-3">8 et 15 caracteres. minimum 1 lettre, 1 chiffre et 1 caractère spécial</small></p>
                             </div>
 
