@@ -209,14 +209,9 @@ footer p {
   min-height: 100vh;
 }
 
-#connexion #row_connexion {
-  backdrop-filter: blur(7px);
-  background-color: rgba(0, 0, 0, 0.514) !important;
-}
-
 #connexion #col_connexion {
   backdrop-filter: blur(7px);
-  background-color: rgba(0, 0, 0, 0.242) !important;
+  background-color: rgba(0, 0, 0, 0.498);
 }
 
 
@@ -236,14 +231,9 @@ footer p {
   min-height: 100vh;
 }
 
-#inscription #row_inscription {
-  backdrop-filter: blur(7px);
-  background-color: rgba(0, 0, 0, 0.514);
-}
-
 #inscription #col_inscription {
   backdrop-filter: blur(7px);
-  background-color: rgba(0, 0, 0, 0.242);
+  background-color: rgba(0, 0, 0, 0.498);
 }
 
 
@@ -344,8 +334,8 @@ footer p {
 /* profil_modif_infos.php  
 ====================================================================================================================== */
 
+/* background */
 #profil_modif_infos {
-  /* background */
   background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
   width: 100%;
   background-size: cover;
@@ -353,6 +343,56 @@ footer p {
   background-attachment: fixed;
   background-repeat: no-repeat;
   min-height: 100vh;
+}
+
+#profil_modif_infos #col_profil_modif_infos {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.498);
+}
+
+
+
+
+
+/* profil_modif_adresse.php  
+====================================================================================================================== */
+
+/* background */
+#profil_modif_adresse {
+  background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+#profil_modif_adresse #col_profil_modif_adresse {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.498);
+}
+
+
+
+
+
+/* profil_modif_password.php  
+====================================================================================================================== */
+
+#profil_modif_password {
+  background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+#profil_modif_password #col_profil_modif_password {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.498);
 }
 
 

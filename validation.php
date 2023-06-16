@@ -51,7 +51,7 @@
                                     </div>
 
                                     <div class="col-md-2 text-center">
-                                        <h4 class="text-light fs-6 m-0">' . $articlePanier['nom'] . '</h4>
+                                        <h4 class="text-light fs-6 mt-3">' . $articlePanier['nom'] . '</h4>
                                     </div>
 
                                     <div class="col-md-2 text-center">
@@ -63,7 +63,7 @@
                                     </div>
 
                                     <div class="col-md-2 text-center">
-                                        <h4 class="text-light fs-6 m-0">' . $articlePanier['quantite'] . '</h4>
+                                        <h4 class="text-light fs-6 mt-1">' . $articlePanier['quantite'] . '</h4>
                                     </div>
 
                                     <form class="col-md-2 text-center" action="./panier.php" method="post">

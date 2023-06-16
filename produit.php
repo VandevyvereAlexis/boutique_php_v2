@@ -48,8 +48,8 @@
         <section class="d-flex align-items-center justify-content-center vh-100 pt-5" id="details-produit">
 
             <?php
-                echo'<div class="container m-3">
-                        <div class="row justify-content-center flex-nowrap grid gap-1" id="details-produit_row">
+                echo'<div class="container m-1">
+                        <div class="row justify-content-center flex-nowrap grid gap-1 my-5" id="details-produit_row">
                             <div class="col-md-6 text-white p-0">
 
                                 <div class="card text-light border-secondary rounded p-4" id="card_details_produit">

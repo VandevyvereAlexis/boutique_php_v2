@@ -41,7 +41,7 @@
     ======================= -->
     <main class="d-flex align-items-center" id="inscription">
         <div class="container">
-            <div class="row justify-content-center rounded border border-secondary p-4" id="row_inscription">
+            <div class="row justify-content-center p-4">
                 <div class="col-md-6 text-white rounded border border-secondary" id="col_inscription">
 
                     <!-- titre -->

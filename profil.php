@@ -8,21 +8,13 @@
         modifInfos();
     }
 
-    if (isset($_POST["new_password"])) {                 // function modification password
+    if (isset($_POST["new_password"])) {        // function modification password
         modifPassword();
     }
 
     if (isset($_POST["adresse"])) {
         modifierAdresse();
     }
-
-    /*if (isset($_POST["adresse"])) { 
-        creationAdresse();
-    }
-
-    if (isset($_POST["modifier_adresse"])) {
-        modificationAdresse();
-    }*/
 ?>
 
 
@@ -50,7 +42,7 @@
     <!-- main 
     ======================= -->
     <main class="bg-dark d-flex align-items-center mt-5" id="main-profil">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
 
                 <h1 class="text-light border border-secondary text-center rounded m-0 mt-1 p-3 mb-5">Profil de <?=$_SESSION["user"]["prenom"] . " " . $_SESSION["user"]["nom"] ?> </h1>
@@ -89,7 +81,7 @@
                             <!-- logo -->
                             <i class="fa-solid fa-house text-light fs-2 mt-3"></i>
                             <!-- texte -->
-                            <p class="text-light mt-4 fs-5">Créer / Modifier mon adresse</p>
+                            <p class="text-light mt-4 fs-5">Modifier mon adresse</p>
                         </a>
                     </div>
                 </div>

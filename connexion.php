@@ -48,7 +48,7 @@
     ======================= -->
     <main class="d-flex align-items-center" id="connexion">
         <div class="container">
-            <div class="row justify-content-center rounded border border-secondary p-4" id="row_connexion">
+            <div class="row justify-content-center p-4">
                 <div class="col-md-6 text-white rounded border border-secondary" id="col_connexion">
 
                     <!-- titre -->
@@ -58,19 +58,19 @@
                     <form method="post" action="./index.php">
 
                         <!-- email -->
-                        <div class="form-group">
+                        <div class="form-group col-sm-10 mx-auto">
                             <label for="email">Email</label>
                             <input type="email" class="form-control mb-3" name="email" id="email" placeholder="Entrez votre email">
                         </div>
 
                         <!-- mot de passe -->
-                        <div class="form-group">
+                        <div class="form-group col-sm-10 mx-auto">
                             <label for="password">Mot de passe</label>
                             <input type="password" class="form-control" name="password" id="password" placeholder="Entrez votre mot de passe">
                         </div>
 
                         <!-- button + lien -->
-                        <div class="d-flex">
+                        <div class="d-flex justify-content-center">
                             <!-- se connecter -->
                             <button type="submit" class="btn btn-light mt-5 mb-4" name="connexion">Se connecter</button>
                             <!-- lien page inscription -->
