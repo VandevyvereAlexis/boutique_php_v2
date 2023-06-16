@@ -173,6 +173,13 @@ body {
 }
 
 
+#validation-panier #container_validation_panier {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.514);
+}
+
+
+
 
 
 
@@ -280,17 +287,18 @@ footer p {
 /* profil.php  
 ====================================================================================================================== */
 
+/* background */
 #main-profil {
-    /* background */
-    background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    min-height: 100vh;
+  background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
 }
 
+/* card modif infos */
 #main-profil #card-profil-1 {
   backdrop-filter: blur(7px);
   background-color: rgba(0, 0, 0, 0.514) !important;
@@ -298,6 +306,7 @@ footer p {
   height: 10rem;
 }
 
+/* card modif mot de passe  */
 #main-profil #card-profil-2 {
   backdrop-filter: blur(7px);
   background-color: rgba(0, 0, 0, 0.514) !important;
@@ -305,6 +314,7 @@ footer p {
   height: 10rem;
 }
 
+/* card modif adresse */
 #main-profil #card-profil-3 {
   backdrop-filter: blur(7px);
   background-color: rgba(0, 0, 0, 0.514) !important;
@@ -312,6 +322,7 @@ footer p {
   height: 10rem;
 }
 
+/* card liste commandes */
 #main-profil #card-profil-4 {
   backdrop-filter: blur(7px);
   background-color: rgba(0, 0, 0, 0.514) !important;
@@ -319,6 +330,7 @@ footer p {
   height: 10rem;
 }
 
+/* titre */
 #main-profil h1 {
   backdrop-filter: blur(7px);
   background-color: rgba(0, 0, 0, 0.514) !important;

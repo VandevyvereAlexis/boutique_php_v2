@@ -2,53 +2,51 @@
 ------------------------------------------------------------------------------------------------------------------- -->
 <!--
 
-    64.         CONNEXION A LA BASE DE DONNEES                                                          "TERMINE"
+    66.         CONNEXION A LA BASE DE DONNEES                                                          "TERMINE"
 
-    95.         FORMULAIRE D'INSCRIPTION (Nom + prenom + mail)                                          "TERMINE"
+    97.         FORMULAIRE D'INSCRIPTION (Nom + prenom + mail)                                          "TERMINE"
 
-    95.         FORMULAIRE D'INSCRIPTION (Nom + prenom + email + ville + code postal + adresse)         "TERMINE"
+    175.         FORMULAIRE D'INSCRIPTION (Nom + prenom + email + ville + code postal + adresse)        "TERMINE"
 
-    173.        VERIFICATION QU'AUCUN INPUT NE SOIT VIDE                                                "TERMINE"
+    271.        VERIFICATION QU'AUCUN INPUT NE SOIT VIDE                                                "TERMINE"
 
-    195.        VERIFICATION QUE LE COMPTE NE SOIT PAS DEJA EXISTANT                                    "TERMINE"
+    293.        VERIFICATION QUE LE COMPTE NE SOIT PAS DEJA EXISTANT                                    "TERMINE"
 
-    217.        CHECK LONGUEUR DES CARACTERES                                                           "TERMINE"
+    315.        CHECK LONGUEUR DES CARACTERES                                                           "TERMINE"
 
-    261.        REGEX POUR PASSWORD                                                                     "TERMINE"
+    381.        REGEX POUR PASSWORD                                                                     "TERMINE"
 
-    280.        FORMUALIRE CONNEXION                                                                    "TERMINE"
+    400.        FORMUALIRE CONNEXION                                                                    "TERMINE"
 
-    349.        FORMULAIRE MODIFICATION INFORMATION                                                     "TERMINE"
+    469.        FORMULAIRE MODIFICATION INFORMATION                                                     "TERMINE"
 
-    402.        FORMUALIRE MODIFICATION MOT DE PASSE                                    "EN COURS"
+    521.        FORMUALIRE MODIFICATION MOT DE PASSE                                                    "TERMINE"
 
-                RECUPERATION LISTE DES ARTICLES                             "TERMINE"
+    581.        RECUPERATION LISTE DES ARTICLES                                                         "TERMINE"
 
-                RECUPERATION LISTE DES GAMMES                               "TERMINE"
+    602.        RECUPERATION LISTE DES GAMMES                                                           "TERMINE"
 
-                RECUPERATION LISTE ARTICLES POUR UNE GAMME                  "TERMINE"
+    623.        RECUPERATION LISTE ARTICLES POUR UNE GAMME                                              "TERMINE"
 
-                RECUPERATION D'ARTICLE PAR ID                               "TERMINE"
+    646.        RECUPERATION D'ARTICLE PAR ID                                                           "TERMINE"
 
-                INITIALISATION PANIER                                       "TERMINE"
+    671.        INITIALISATION PANIER                                                                   "TERMINE"
 
-                FONCTION QUANTITEE ARTICLE                                  "TERMINE"
+    691.        FONCTION QUANTITEE ARTICLE                                                              "TERMINE"
 
-                FONCTION TOTAL PANIER                                       "TERMINE"
+    730.        FONCTION TOTAL PANIER                                                                   "TERMINE"
 
-                MODIFIER QUANTITE DE L'ARTICLE DANS LE PANIER               "TERMINE"
+    751.        MODIFIER QUANTITE DE L'ARTICLE DANS LE PANIER                                           "TERMINE"
 
-                SUPRESSION D'ARTICLE DANS LE PANIER                         "TERMINE"
+    778.        SUPRESSION D'ARTICLE DANS LE PANIER                                                     "TERMINE"
 
-                VIDER PANIER                                                "TERMINE"
+    798.        VIDER PANIER                                                                            "TERMINE"
 
-                CALCULER LES FRAIS DE PORT                                  "TERMINE"
+    813.        CALCULER LES FRAIS DE PORT                                                              "TERMINE"
 
-                FORMULAIRE CREATION ADRESSE                                                         "A FAIRE"
+    836.        FORMULAIRE MODIFICATION ADRESSE                                                         "TERMINE"
 
-                FORMULAIRE MODIFICATION ADRESSE                                                     "A FAIRE"
-
-                LISTE DES COMMANDES                                                                 "A FAIRE"
+    886.        LISTE DES COMMANDES                                                                     "A FAIRE"
 
 -->
 
@@ -69,7 +67,7 @@
     {
         try                                                                                                                                                 // try : je tente une connexion
         {                                                                                                                               
-            $db = new PDO ('mysql:host=localhost;dbname=boutique_en_ligne;charset=utf8',                                                                    //infos:sgbd,nombase,adresse(host)+ 
+            $db = new PDO ('mysql:host=localhost;dbname=boutique_en_ligne;charset=utf8',                                                                    // infos:sgbd,nombase,adresse(host)+ 
                 'vdv_a',                                                                                                                                    // pseudo utilisateur (root en local)
                 'As-VDV_11/03',                                                                                                                             // mot de passe (aucun en local)
                 array (PDO::ATTR_ERRMODE => PDO:: ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE, PDO:: FETCH_ASSOC)                                       // options PDO : 1) affichage des erreurs / 2) récupération des données simplifiée
@@ -312,7 +310,7 @@
 
 
 
-    /* CHECK LONGUEUR DES CARACTERES                                                                               "TERMINE"
+    /* CHECK LONGUEUR DES CARACTERES                                                                                "TERMINE"
     ====================================================================================================================== */
     function checkCaracteres()
     {
@@ -518,7 +516,7 @@
 
 
 
-    /* FORMUALIRE MODIFICATION MOT DE PASSE                                                                         "EN COURS"
+    /* FORMUALIRE MODIFICATION MOT DE PASSE                                                                         "TERMINE"
     ====================================================================================================================== */
     function modifPassword()
     {
@@ -835,50 +833,8 @@
 
 
 
-    /* FORMULAIRE CREATION ADRESSE   
+    /* MODIFICATION ADRESSE                                                                                         "TERMINE"
     ====================================================================================================================== */
-    /*function creationAdresse()
-    {
-        $db = getConnexion();
-
-        if (!checkEmptyFields())                                                                                                                            // On vérifie si le formulaire a été envoyé
-        { 
-
-            $adresse = strip_tags($_POST["adresse"]);
-            $code_postal = strip_tags($_POST["code_postal"]);
-            $ville = strip_tags($_POST["ville"]);
-            $id_client = $_SESSION["user"]["id"];                                                                                                           // Récupère l'ID du client connecté
-
-            if (checkCaracteres())
-            {
-                $sql = "INSERT INTO `adresses`(`adresse`, `code_postal`, `ville`, `id_client`) VALUES (:adresse, :code_postal, :ville, :id_client)";
-
-                $query = $db->prepare($sql);
-
-                $query->bindValue(":adresse", $adresse, PDO::PARAM_STR);
-                $query->bindValue(":code_postal", $code_postal, PDO::PARAM_STR);
-                $query->bindValue(":ville", $ville, PDO::PARAM_STR);
-                $query->bindValue(":id_client", $id_client, PDO::PARAM_INT);                                                                                // Lie l'adresse à l'ID du client
-
-                if ($query->execute()) 
-                {
-                    echo "<script>alert('L'adresse a été crée avec succès.');</script>";
-                }
-
-            }
-            else {
-                echo "<script>alert('Longueur des caractères insuffisante. Veuillez entrer des valeurs avec une longueur suffisante.')</script>";
-            }
-
-        }
-        else { 
-            echo "<script>alert('Le formulaire est incomplet. Veuillez remplir tous les champs obligatoires.')</script>";
-        }
-    }*/
-    /* ------------------------------------------------------------------------------------------------------------------- */
-
-
-
     function modifierAdresse()
     {
         $db = getConnexion();
@@ -918,50 +874,6 @@
         }
     }
 
-
-
-
-
-    /* FORMULAIRE MODIFICATION ADRESSE  
-    ====================================================================================================================== */
-    /*function modificationAdresse()
-    {
-        $db = getConnexion();
-
-        if (!checkEmptyFields()) 
-        {
-            $id_client = $_SESSION['user']['id'];
-            $adresse = strip_tags($_POST["adresse"]);
-            $code_postal = strip_tags($_POST["code_postal"]);
-            $ville = strip_tags($_POST["ville"]);
-
-            if (checkCaracteres()) 
-            {
-                $sql = "UPDATE `adresses` SET `adresse` = :adresse, `code_postal` = :code_postal, `ville` = :ville WHERE id_client = :id_client";
-
-                $query = $db->prepare($sql);
-
-                $query->bindValue(":adresse", $adresse, PDO::PARAM_STR);
-                $query->bindValue(":code_postal", $code_postal, PDO::PARAM_STR);
-                $query->bindValue(":ville", $ville, PDO::PARAM_STR);
-                $query->bindValue(":id_client", $id_client, PDO::PARAM_INT);
-
-                $query->fetch();
-                
-                if ($query->execute()) 
-                {
-                echo "<script>alert('L'adresse a été modifiée avec succès.');</script>";
-                }
-
-            } else {
-                echo "<script>alert('Longueur des caractères insuffisante. Veuillez entrer des valeurs avec une longueur suffisante.')</script>";
-            }
-
-        } else {
-            echo "<script>alert('Le formulaire est incomplet. Veuillez remplir tous les champs obligatoires.')</script>";
-        }
-    }*/ 
-    /* ------------------------------------------------------------------------------------------------------------------- */
 
 
 

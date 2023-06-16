@@ -11,9 +11,10 @@
 
 
 
+
+
 <!-- body 
 ======================= -->
-
 <body>
 
 
@@ -42,7 +43,7 @@
                 <!-- PHP -->
                 <?php
                     foreach ($_SESSION['panier'] as $articlePanier) {
-                        echo'<div class="container mx-auto border border-secondary rounded  mb-3 mt-5 p-2">
+                        echo'<div class="container mx-auto border border-secondary rounded  mb-3 mt-5 p-2" id="container_validation_panier">
                                 <div class="row align-items-center">
 
                                     <div class="col-md-2 text-center border-end">
