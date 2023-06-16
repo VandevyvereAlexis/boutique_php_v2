@@ -33,10 +33,10 @@
     ======================= -->
     <main class="bg-dark d-flex align-items-center" id="profil_commandes">
         <div class="container">
-            <div class="row justify-content-center grid gap-5 flex-nowrap rounded border border-secondary p-5" id="row_connexion">
+            <div class="row justify-content-center grid gap-5 flex-nowrap p-5">
 
                 <!-- Formulaire connexion -->
-                <div class="col-md-6 bg-transparent text-white rounded border border-secondary" id="col_connexion">
+                <div class="col-md-6 text-white rounded border border-secondary" id="col_connexion">
                     <div class="container container-full-height">
                         <h2 class="mt-3 mb-3 text-center">Connexion</h2>
 
@@ -61,7 +61,6 @@
             </div>
         </div>
     </main>
-
 
 
 

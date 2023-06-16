@@ -9,6 +9,8 @@
     createCart();                       // initialiser le panier.
 
     if (isset($_POST['vider_panier'])) {
+        enregistrerCommande(); 
+        sauvegarderContenuCommande();                                   
         viderPanier();
     }
 

@@ -2,51 +2,51 @@
 ------------------------------------------------------------------------------------------------------------------- -->
 <!--
 
-    66.         CONNEXION A LA BASE DE DONNEES                                                          "TERMINE"
+    64.         CONNEXION A LA BASE DE DONNEES                                                          "TERMINE"
 
-    97.         FORMULAIRE D'INSCRIPTION (Nom + prenom + mail)                                          "TERMINE"
+    95.         FORMULAIRE D'INSCRIPTION (Nom + prenom + mail)                                          "TERMINE"
 
-    175.         FORMULAIRE D'INSCRIPTION (Nom + prenom + email + ville + code postal + adresse)        "TERMINE"
+    173.         FORMULAIRE D'INSCRIPTION (Nom + prenom + email + ville + code postal + adresse)        "TERMINE"
 
-    271.        VERIFICATION QU'AUCUN INPUT NE SOIT VIDE                                                "TERMINE"
+    269.        VERIFICATION QU'AUCUN INPUT NE SOIT VIDE                                                "TERMINE"
 
-    293.        VERIFICATION QUE LE COMPTE NE SOIT PAS DEJA EXISTANT                                    "TERMINE"
+    291.        VERIFICATION QUE LE COMPTE NE SOIT PAS DEJA EXISTANT                                    "TERMINE"
 
-    315.        CHECK LONGUEUR DES CARACTERES                                                           "TERMINE"
+    313.        CHECK LONGUEUR DES CARACTERES                                                           "TERMINE"
 
-    381.        REGEX POUR PASSWORD                                                                     "TERMINE"
+    379.        REGEX POUR PASSWORD                                                                     "TERMINE"
 
-    400.        FORMUALIRE CONNEXION                                                                    "TERMINE"
+    398.        FORMUALIRE CONNEXION                                                                    "TERMINE"
 
-    469.        FORMULAIRE MODIFICATION INFORMATION                                                     "TERMINE"
+    465.        FORMULAIRE MODIFICATION INFORMATION                                                     "TERMINE"
 
-    521.        FORMUALIRE MODIFICATION MOT DE PASSE                                                    "TERMINE"
+    517.        FORMUALIRE MODIFICATION MOT DE PASSE                                                    "TERMINE"
 
-    581.        RECUPERATION LISTE DES ARTICLES                                                         "TERMINE"
+    577.        RECUPERATION LISTE DES ARTICLES                                                         "TERMINE"
 
-    602.        RECUPERATION LISTE DES GAMMES                                                           "TERMINE"
+    598.        RECUPERATION LISTE DES GAMMES                                                           "TERMINE"
 
-    623.        RECUPERATION LISTE ARTICLES POUR UNE GAMME                                              "TERMINE"
+    619.        RECUPERATION LISTE ARTICLES POUR UNE GAMME                                              "TERMINE"
 
-    646.        RECUPERATION D'ARTICLE PAR ID                                                           "TERMINE"
+    642.        RECUPERATION D'ARTICLE PAR ID                                                           "TERMINE"
 
-    671.        INITIALISATION PANIER                                                                   "TERMINE"
+    667.        INITIALISATION PANIER                                                                   "TERMINE"
 
-    691.        FONCTION QUANTITEE ARTICLE                                                              "TERMINE"
+    687.        FONCTION QUANTITEE ARTICLE                                                              "TERMINE"
 
-    730.        FONCTION TOTAL PANIER                                                                   "TERMINE"
+    726.        FONCTION TOTAL PANIER                                                                   "TERMINE"
 
-    751.        MODIFIER QUANTITE DE L'ARTICLE DANS LE PANIER                                           "TERMINE"
+    747.        MODIFIER QUANTITE DE L'ARTICLE DANS LE PANIER                                           "TERMINE"
 
-    778.        SUPRESSION D'ARTICLE DANS LE PANIER                                                     "TERMINE"
+    774.        SUPRESSION D'ARTICLE DANS LE PANIER                                                     "TERMINE"
 
-    798.        VIDER PANIER                                                                            "TERMINE"
+    794.        VIDER PANIER                                                                            "TERMINE"
 
-    813.        CALCULER LES FRAIS DE PORT                                                              "TERMINE"
+    809.        CALCULER LES FRAIS DE PORT                                                              "TERMINE"
 
-    836.        FORMULAIRE MODIFICATION ADRESSE                                                         "TERMINE"
+    834.        FORMULAIRE MODIFICATION ADRESSE                                                         "TERMINE"
 
-    886.        LISTE DES COMMANDES                                                                     "A FAIRE"
+    884.        LISTE DES COMMANDES                                                                     "A FAIRE"
 
 -->
 
@@ -429,9 +429,7 @@
                             "nom"       => $user["nom"],
                             "prenom"    => $user["prenom"],
                             "email"     => $user["email"]
-                        ];
-
-                        header("Location: index.php");                                                                                                      // on redirige vers la page index.php
+                        ];                                                                                                   
 
                     }
                     else {
@@ -526,14 +524,16 @@
         {
 
             $client = checkEmail($_SESSION['user']['email']);                                                                                               // Je recupere la fonction (checkemail) qui me permet de récupérer l'id du client en fonction de son email. 
+            $oldPassword = strip_tags($_POST["old_password"]);                                                                                              // Nettoyage de l'ancien mot de passe
+            $newPassword = strip_tags($_POST["new_password"]);                                                                                              // Nettoyage du nouveau mot de passe
 
-            if (password_verify($_POST["old_password"], $client["password"])) 
+            if (password_verify($oldPassword, $client["password"])) 
             {   
 
-                if (checkPassword($_POST["new_password"]))                                                                                                  // je déclare ma fonction checkPassword "regex" et je met le reste du code à l'intérieur avec else die pour afficher un message 
+                if (checkPassword($newPassword))                                                                                                            // je déclare ma fonction checkPassword "regex" et je met le reste du code à l'intérieur avec else die pour afficher un message 
                 {
 
-                    $password = password_hash($_POST["new_password"], PASSWORD_DEFAULT);                                                                    // on va hasher le mot de passe
+                    $password = password_hash($newPassword, PASSWORD_DEFAULT);                                                                              // on va hasher le mot de passe
 
                     $sql = "UPDATE `clients` SET `password`=:password WHERE id = :id";
 
@@ -883,12 +883,84 @@
 
 
 
-    /* LISTE DES COMMANDES
+    /* ENREGISTRE
     ====================================================================================================================== */
-    function commandesArticles()
+    function enregistrerCommande()
     {
         $db = getConnexion();
+
+        $sql = "INSERT INTO commandes (id_client, numero, date_commande, prix) VALUES(:id_client, :numero, :date_commande, :prix)";
+
+        $query = $db->prepare($sql);
+
+        $id_client = $_SESSION['user']['id'];
+        $numero = rand(1000000, 9999999);
+        $date_commande = date("Y-m-d");
+        $prix = totalPanier();
+
+        $query->bindParam(':id_client', $id_client, PDO::PARAM_INT);
+        $query->bindParam(':numero', $numero, PDO::PARAM_INT);
+        $query->bindParam(':date_commande', $date_commande);
+        $query->bindParam(':prix', $prix);
+
+        $query->execute();
+
+
     }
     /* ------------------------------------------------------------------------------------------------------------------- */
+
+
+
+
+
+
+    function sauvegarderContenuCommande()
+    {
+        $db = getConnexion();
+
+        $sql = "INSERT INTO commandes (id_client, numero, date_commande, prix) VALUES(:id_client, :numero, :date_commande, :prix)";
+        $query = $db->prepare($sql);
+
+        $id_client = $_SESSION['user']['id'];
+        $numero = rand(1000000, 9999999);
+        $date_commande = date("Y-m-d");
+        $prix = totalPanier();
+
+        $query->bindParam(':id_client', $id_client, PDO::PARAM_INT);
+        $query->bindParam(':numero', $numero, PDO::PARAM_INT);
+        $query->bindParam(':date_commande', $date_commande);
+        $query->bindParam(':prix', $prix);
+
+        if ($query->execute()) 
+        {
+            $id_commande = $db->lastInsertId();
+            $sql = "INSERT INTO commande_articles (id_commande, id_article, quantite) VALUES(:id_commande, :id_article, :quantity)";
+            $query = $db->prepare($sql);
+
+            foreach ($_SESSION['panier'] as $article) 
+            {
+                $id_article = $article['id'];
+                $quantite = $article['quantite'];
+
+                $query->bindParam(':id_commande', $id_commande, PDO::PARAM_INT);
+                $query->bindParam(':id_article', $id_article, PDO::PARAM_INT);
+                $query->bindParam(':quantity', $quantite, PDO::PARAM_INT);
+
+                $query->execute();
+            }
+
+            // Vérifier le résultat en base de données (table commande_articles)
+            $sql = "SELECT * FROM commande_articles WHERE id_commande = :id_commande";
+            $query = $db->prepare($sql);
+            $query->bindParam(':id_commande', $id_commande, PDO::PARAM_INT);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            // Traiter le résultat
+            var_dump($result);
+        } else {
+            // L'insertion de la commande a échoué, gérez l'erreur de manière appropriée
+        }
+    }
 
 ?>

@@ -126,8 +126,8 @@
             <div class="container mt-4">
 
                 <?php
-                    if (isset($_SESSION['panier']) && !empty($_SESSION['panier'])) {
-                        echo'<div class="container d-flex justify-content-center pb-2">
+                    if (isset($_SESSION['panier']) && !empty($_SESSION['panier'])) {?>
+                        <div class="container d-flex justify-content-center pb-2">
                                 <form class="col-lg-2" action="panier.php" method="post">
 
                                     <button type="submit" class="btn btn-danger me-4" name="viderPanier">
@@ -135,15 +135,17 @@
                                     </button>
 
                                 </form>
-                                
+
+                                    <?php if(isset($_SESSION["user"])) { ?>
                                     <a href="./validation.php">
                                         <button type="submit" class="btn btn-light">
                                             Valider le panier
                                         </button>
                                     </a>
+                                    <?php } ?>
                                     
                             </div>';
-                    }
+                    <?php }
                 ?>
 
             </div>
