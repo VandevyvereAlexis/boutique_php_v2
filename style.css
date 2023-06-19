@@ -1,3 +1,60 @@
+/* ---
+
+58.         RESET
+
+75.         header.php
+
+98.         index.php
+
+163.        produit.php
+
+202.        panier.php
+
+237.        validation.php
+
+272.        footer.php
+
+290.        connexion.php
+
+317.        inscription.php
+
+344.        gammes.php
+
+383.        profil.php
+
+445.        profil_modif_infos.php
+
+473.        profil_modif_adresse.php
+
+501.        profil_modif_password.php
+
+529.        profil_commandes.php
+
+557.        details_commandes.php
+
+585.        medias queries
+
+s
+
+s
+
+s
+
+s
+
+s
+
+--- */
+
+
+
+
+
+
+
+
+
+
 /* ---------------------- reset ------------------------- */
 body {
   width: 100%;
@@ -5,6 +62,11 @@ body {
   margin: 0;
   font-family: 'Quicksand', sans-serif;
 }
+
+
+
+
+
 
 
 
@@ -23,6 +85,11 @@ body {
   font-size: 10px;
   font-family: 'Gruppo', sans-serif;
 }
+
+
+
+
+
 
 
 
@@ -88,6 +155,11 @@ body {
 
 
 
+
+
+
+
+
 /* produit.php  
 ====================================================================================================================== */
 
@@ -122,6 +194,11 @@ body {
 
 
 
+
+
+
+
+
 /* panier.php  
 ====================================================================================================================== */
 
@@ -147,6 +224,11 @@ body {
 #container_panier img {
   width: 3rem;
 }
+
+
+
+
+
 
 
 
@@ -183,6 +265,10 @@ body {
 
 
 
+
+
+
+
 /* footer.php  
 ====================================================================================================================== */
 
@@ -191,6 +277,11 @@ footer p {
   letter-spacing: 3px;
   font-size: 0.7rem;
 }
+
+
+
+
+
 
 
 
@@ -218,6 +309,11 @@ footer p {
 
 
 
+
+
+
+
+
 /* inscription.php  
 ====================================================================================================================== */
 
@@ -235,6 +331,11 @@ footer p {
   backdrop-filter: blur(7px);
   background-color: rgba(0, 0, 0, 0.498);
 }
+
+
+
+
+
 
 
 
@@ -269,6 +370,11 @@ footer p {
 #card-gamme img {
   width: 6rem;
 }
+
+
+
+
+
 
 
 
@@ -331,6 +437,11 @@ footer p {
 
 
 
+
+
+
+
+
 /* profil_modif_infos.php  
 ====================================================================================================================== */
 
@@ -349,6 +460,11 @@ footer p {
   backdrop-filter: blur(7px);
   background-color: rgba(0, 0, 0, 0.498);
 }
+
+
+
+
+
 
 
 
@@ -377,9 +493,15 @@ footer p {
 
 
 
+
+
+
+
+
 /* profil_modif_password.php  
 ====================================================================================================================== */
 
+/* background */
 #profil_modif_password {
   background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
   width: 100%;
@@ -394,6 +516,67 @@ footer p {
   backdrop-filter: blur(7px);
   background-color: rgba(0, 0, 0, 0.498);
 }
+
+
+
+
+
+
+
+
+
+
+/* profil_commandes.php  
+====================================================================================================================== */
+
+/* background */
+#profil_commandes {
+  background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+#profil_commandes #container_profil_commandes {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.498);
+}
+
+
+
+
+
+
+
+
+
+
+/* details_commandes.php  
+====================================================================================================================== */
+
+/* background */
+#details_commande {
+  background-image: linear-gradient(to top, #ffffff1f, #000000c0), url(./images/image_fond_2.jpg);
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+#details_commande #container_profil_commandes {
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.498);
+}
+
+
+
+
+
 
 
 

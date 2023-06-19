@@ -33,6 +33,7 @@ createCart();                       // initialiser le panier.
     ======================= -->
     <main class="bg-dark d-flex align-items-center" id="profil_modif_adresse">
         <div class="container">
+
             <div class="row justify-content-center grid gap-5 flex-nowrap p-5">
 
                 <!-- Formulaire connexion -->
@@ -71,10 +72,11 @@ createCart();                       // initialiser le panier.
 
 
                 </div>
+
             </div>
+
         </div>
     </main>
-
 
 
 

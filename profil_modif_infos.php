@@ -22,7 +22,7 @@
     <!-- header 
     ======================= -->
     <?php
-    include 'header.php';   // inclusion fichier header.php
+    include 'header.php';                   // inclusion fichier header.php
     ?>
 
 
@@ -33,8 +33,10 @@
     ======================= -->
     <main class="d-flex align-items-center" id="profil_modif_infos">
         <div class="container">
+
             <div class="row justify-content-center grid gap-5 flex-nowrap p-5">
                 <div class="col-md-6 text-white rounded border border-secondary" id="col_profil_modif_infos">
+
                     <h2 class="mt-3 mb-3 text-center">modification informations personnelles</h2>
 
                     <!-- formulaire -->
@@ -64,6 +66,7 @@
 
                 </div>
             </div>
+
         </div>
     </main>
 

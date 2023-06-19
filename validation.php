@@ -97,7 +97,7 @@
                     <h4 class="text-light fs-5 mt-4">Total du panier : <?= totalPanier() + frais($_SESSION['panier']) ?>€</h4>
 
                     <!-- boutton modal -->
-                    <button type="button" class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-primary mt-4 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Confirmer l'achat
                     </button>
 
@@ -175,5 +175,9 @@
     <?php
     include 'footer.php'    // inclusion fichier footer.php
     ?>
+
+
+
+
 
 </body>

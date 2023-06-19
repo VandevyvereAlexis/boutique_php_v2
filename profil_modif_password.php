@@ -25,9 +25,7 @@
     include 'header.php';   // inclusion fichier header.php
     ?>
 
-    <?php 
-        //var_dump($_POST)
-    ?>
+
 
     <!-- main 
     ======================= -->

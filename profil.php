@@ -45,7 +45,9 @@
         <div class="container">
             <div class="row">
 
-                <h1 class="text-light border border-secondary text-center rounded m-0 mt-1 p-3 mb-5">Profil de <?=$_SESSION["user"]["prenom"] . " " . $_SESSION["user"]["nom"] ?> </h1>
+
+                <h1 class="text-light border border-secondary text-center rounded m-0 mt-3 p-3 mb-5">Profil de <?=$_SESSION["user"]["prenom"] . " " . $_SESSION["user"]["nom"] ?> </h1>
+
 
                 <!-- card 1 - modification informations -->
                 <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
@@ -60,6 +62,7 @@
                     </div>
                 </div>
 
+
                 <!-- card 1 - modification password -->
                 <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
                     <div class="card bg-transparent text-light border border-secondary d-flex justify-content-center" id="card-profil-2">
@@ -72,6 +75,7 @@
                         </a>
                     </div>
                 </div>
+
 
                 <!-- card 1 - modification / creation adresse -->
                 <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
@@ -86,6 +90,7 @@
                     </div>
                 </div>
 
+
                 <!-- card 1 - voir les commandes -->
                 <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
                     <div class="card bg-transparent text-light border border-secondary d-flex justify-content-center" id="card-profil-4">
@@ -99,6 +104,7 @@
                     </div>
                 </div>
 
+
             </div>
         </div>
     </main>
@@ -107,11 +113,15 @@
 
 
 
-
     <!-- footer 
     ======================= -->
     <?php
-    include 'footer.php' // inclusion fichier footer.php
+    include 'footer.php'            // inclusion fichier footer.php
     ?>
+
+
+
+
+
 
 </body>

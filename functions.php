@@ -44,15 +44,15 @@
 
     881.            MODIFICATION ADRESSE                                                            
 
-    942.            ENREGISTRE COMMANDE                                                       
+    942.            ENREGISTRE CONTENU COMMANDE                                                  
 
-    982.            ENREGISTRE CONTENU COMMANDE                                                                    
+    1006.           RECUPERATION LISTE DES ARTICLES                                                            
 
-    1049.           FORMULAIRE D'INSCRIPTION (Nom + prenom + mail)
+    1038.           RECUPERATION DETAILS COMMANDE  
 
-    ...
+    1068.           FORMULAIRE D'INSCRIPTION (Nom + prenom + mail)
 
-    ...
+    1150.           ENREGISTRE COMMANDE
 
     ...
 
@@ -939,46 +939,6 @@
 
 
 
-    /* ENREGISTRE COMMANDE
-    ---------------------------------------------------------------------------------------------------------------------- */
-    function enregistrerCommande()
-    {
-
-        $db = getConnexion();                                                                                                                                               // Obtient la connexion à la base de données
-
-        $sql = "INSERT INTO commandes (id_client, numero, date_commande, prix) VALUES(:id_client, :numero, :date_commande, :prix)";
-
-        $query = $db->prepare($sql);                                                                                                                                        // Obtient la connexion à la base de données
-
-        $id_client = $_SESSION['user']['id'];                                                                                                                               // Récupère l'ID du client à partir de la session
-        $numero = rand(1000000, 9999999);                                                                                                                                   // Génère un numéro de commande aléatoire entre 1000000 et 9999999
-        $date_commande = date("Y-m-d");                                                                                                                                     // Récupère la date actuelle
-        $prix = totalPanier();                                                                                                                                              // Récupère le prix total du panier en appelant la fonction totalPanier()
-
-        $query->bindParam(':id_client', $id_client, PDO::PARAM_INT);                                                                                                        // Lie le paramètre :id_client avec la variable $id_client
-        $query->bindParam(':numero', $numero, PDO::PARAM_INT);                                                                                                              // Lie le paramètre :numero avec la variable $numero
-        $query->bindParam(':date_commande', $date_commande);                                                                                                                // Lie le paramètre :date_commande avec la variable $date_commande
-        $query->bindParam(':prix', $prix);                                                                                                                                  // Lie le paramètre :prix avec la variable $prix
-
-        $query->execute();                                                                                                                                                  // Exécute la requête SQL pour insérer la commande dans la base de données
-
-    }
-    /* =================================================================================================================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /* ENREGISTRE CONTENU COMMANDE
     ---------------------------------------------------------------------------------------------------------------------- */
     function sauvegarderContenuCommande()
@@ -992,7 +952,7 @@
         $id_client = $_SESSION['user']['id'];                                                                                                                               // Récupère l'ID du client à partir de la session
         $numero = rand(1000000, 9999999);                                                                                                                                   // Génère un numéro de commande aléatoire entre 1000000 et 9999999
         $date_commande = date("Y-m-d");                                                                                                                                     // Récupère la date actuelle
-        $prix = totalPanier();                                                                                                                                              // Récupère le prix total du panier en appelant la fonction totalPanier()
+        $prix = totalPanier() + frais($_SESSION['panier']);                                                                                                                                              // Récupère le prix total du panier en appelant la fonction totalPanier()
 
         $query->bindParam(':id_client', $id_client, PDO::PARAM_INT);                                                                                                        // Lie le paramètre :id_client avec la variable $id_client
         $query->bindParam(':numero', $numero, PDO::PARAM_INT);                                                                                                              // Lie le paramètre :numero avec la variable $numero
@@ -1024,11 +984,70 @@
             $query = $db->prepare($sql);                                                                                                                                    // Prépare la requête SQL pour récupérer les articles de la commande
             $query->bindParam(':id_commande', $id_commande, PDO::PARAM_INT);                                                                                                // Lie le paramètre :id_commande avec l'ID de la commande
             $query->execute();                                                                                                                                              // Exécute la requête SQL
-            $result = $query->fetchAll(PDO::FETCH_ASSOC);                                                                                                                   // Récupère le résultat sous forme de tableau associatif
-
-            var_dump($result);                                                                                                                                              // Traiter le résultat (ici, affichage avec var_dump())
+            $query->fetchAll(PDO::FETCH_ASSOC);                                                                                                                             // Récupère le résultat sous forme de tableau associatif
 
         }
+    }
+    /* =================================================================================================================== */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* RECUPERATION LISTE DES ARTICLES                                                                              
+    ---------------------------------------------------------------------------------------------------------------------- */
+    function recupCommande()
+    {
+
+        $db = getConnexion();                                                                                                                                                   // Obtient la connexion à la base de données
+
+        $id_client = $_SESSION['user']['id'];                                                                                                                                   // Récupère l'ID du client à partir de la session
+
+        $sql = 'SELECT * FROM commandes WHERE id_client = :id_client';                                                                                                          // Requête SQL avec une condition pour filtrer par l'ID du client
+        $query = $db->prepare($sql);
+        $query->bindParam(':id_client', $id_client, PDO::PARAM_INT);                                                                                                            // Lie le paramètre :id_client avec l'ID du client
+        $query->execute();
+
+        return $query->fetchAll();                                                                                                                                              // Récupère tous les résultats de la requête et les retourne sous forme de tableau
+    }
+    /* =================================================================================================================== */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* RECUPERATION DETAILS COMMANDE                                                                               
+    ---------------------------------------------------------------------------------------------------------------------- */
+    function recupDetailsCommande($id) 
+    {
+        $db = getConnexion();                                                                                                                                               // Obtient la connexion à la base de données                                                                                                  
+
+        $query = $db->prepare(                                                                                                                                              //INER JOIN ( cibler table secondaire )  'commande_article.id_article' cela prend la table commande_article et recupere l'élément id_article de la table.  
+            'SELECT * FROM commande_articles                                                                                                                                
+            INNER JOIN articles ON commande_articles.id_article = articles.id                                                                                               
+            WHERE id_commande = ?');                                                                                                                                        // Prépare une requête pour sélectionner l'article avec l'ID spécifié                                                                          
+        $query->execute([$id]);                                                                                                                                             // Exécute la requête en remplaçant le paramètre '?' par la valeur de l'ID passé en argument                                                                                                                 
+
+        return $query->fetchAll();                                                                                                                                          // Récupère le premier résultat de la requête et le retourne                                           
     }
     /* =================================================================================================================== */
 
@@ -1112,6 +1131,45 @@
         else { 
             echo "<script>alert('Le formulaire est incomplet. Veuillez remplir tous les champs obligatoires.')</script>";
         }
+    }*/
+    /* =================================================================================================================== */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* ENREGISTRE COMMANDE
+    ---------------------------------------------------------------------------------------------------------------------- */
+    /*function enregistrerCommande()
+    {
+
+        $db = getConnexion();                                                                                                                                               // Obtient la connexion à la base de données
+
+        $sql = "INSERT INTO commandes (id_client, numero, date_commande, prix) VALUES(:id_client, :numero, :date_commande, :prix)";
+
+        $query = $db->prepare($sql);                                                                                                                                        // Obtient la connexion à la base de données
+
+        $id_client = $_SESSION['user']['id'];                                                                                                                               // Récupère l'ID du client à partir de la session
+        $numero = rand(1000000, 9999999);                                                                                                                                   // Génère un numéro de commande aléatoire entre 1000000 et 9999999
+        $date_commande = date("Y-m-d");                                                                                                                                     // Récupère la date actuelle
+        $prix = totalPanier();                                                                                                                                              // Récupère le prix total du panier en appelant la fonction totalPanier()
+
+        $query->bindParam(':id_client', $id_client, PDO::PARAM_INT);                                                                                                        // Lie le paramètre :id_client avec la variable $id_client
+        $query->bindParam(':numero', $numero, PDO::PARAM_INT);                                                                                                              // Lie le paramètre :numero avec la variable $numero
+        $query->bindParam(':date_commande', $date_commande);                                                                                                                // Lie le paramètre :date_commande avec la variable $date_commande
+        $query->bindParam(':prix', $prix);                                                                                                                                  // Lie le paramètre :prix avec la variable $prix
+
+        $query->execute();                                                                                                                                                  // Exécute la requête SQL pour insérer la commande dans la base de données
+
     }*/
     /* =================================================================================================================== */
 
