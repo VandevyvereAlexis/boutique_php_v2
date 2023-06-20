@@ -1003,7 +1003,7 @@
 
 
 
-    /* RECUPERATION LISTE DES ARTICLES                                                                              
+    /* RECUPERATION DES COMMANDES                                                                                 
     ---------------------------------------------------------------------------------------------------------------------- */
     function recupCommande()
     {
